@@ -1,0 +1,41 @@
+.cookbook-card {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.cookbook-card__image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.cookbook-card__content {
+  flex: 1;
+}
+
+.cookbook-card__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.cookbook-card__description {
+  font-size: 18px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.cookbook-card__theme {
+  font-size: 18px;
+  color: #999;
+}
+
+.cookbook-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
