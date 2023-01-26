@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
 import CookbookCard from "./CookbookCard";
+import { useLoaderData, useRouteError } from "react-router";
 
 function CookbookList() {
-  const [cookbooks, setCookbooks] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/cookbooks")
-      .then((res) => res.json())
-      .then((data) => setCookbooks(data.cookbooks))
-      .catch((err) => console.log(err));
-  }, []);
+  const data = useLoaderData();
+  const cookbooks = data.cookbooks;
 
   return (
     <div>

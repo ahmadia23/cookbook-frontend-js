@@ -1,0 +1,10 @@
+.regular-link {
+  text-decoration: none;
+  color: var(--color-primary-400);
+}
+
+.regular-link:hover,
+.regular-link.active {
+  color: var(--color-primary-800);
+  text-decoration: underline;
+}
