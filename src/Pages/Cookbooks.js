@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import classes from "../UI/link.module.css";
 
 const Cookbooks = () => {
+
   return (
     <div>
       <h1>Hello from cookbooks</h1>
@@ -24,10 +25,10 @@ const Cookbooks = () => {
 };
 
 export const loader = async () => {
-  const response = await fetch("http://localhost:8080/cookbooks");
+  const response = await fetch("http://localhost:8080/cookbooksaasas");
   if (!response.ok) {
-    console.log("hello");
-    throw json({ message: "could not fetch cookbooks" }, { status: 500 });
+    console.log('coucou')
+    return json({ message: "could not fetch cookbooks" }, { status: 500 });
   } else {
     return response;
   }

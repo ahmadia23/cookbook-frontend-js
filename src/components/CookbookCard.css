@@ -6,8 +6,6 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
-  margin: 3rem auto;
-  background-color: #28282b;
 }
 
 .cookbook-card__image {
@@ -36,11 +34,8 @@
 .cookbook-card__theme {
   font-size: 18px;
   color: #999;
-
 }
 
 .cookbook-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #242424;
-  opacity: 0.8;
 }

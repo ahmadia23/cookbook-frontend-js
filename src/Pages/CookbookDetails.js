@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { json, Outlet } from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/CookbookCard.css";
@@ -24,17 +25,14 @@ const CookbookDetails = () => {
     </Fragment>
   );
 };
+=======
+const CookbookDetails = () => {
+  return(
+    <div>
+      <h1> This is the details</h1>
+    </div>
+  )
+}
+>>>>>>> parent of de64699 (fixing bug + fetching recipes)
 
 export default CookbookDetails;
-
-export const loader = async ({ request, params }) => {
-  const id = params.cookbookId;
-  const response = await fetch("http://localhost:8080/cookbooks/" + id);
-  if (!response.ok) {
-    throw json(
-      { message: "could not fetch this cookbook's data" },
-      { status: 500 }
-    );
-  }
-  return response;
-};

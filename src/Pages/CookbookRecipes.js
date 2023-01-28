@@ -1,8 +1,12 @@
-import { json, useLoaderData } from "react-router";
-import { NavLink } from "react-router-dom";
-import RecipeCard from "../components/RecipeCard";
-import classes from "../UI/link.module.css";
+ const CookbookRecipes = () => {
+    return(
+      <div>
+        <h1>Look at all this cookbook's recipes</h1>
+      </div>
+    )
+ }
 
+<<<<<<< HEAD
 const CookbookRecipes = () => {
   const recipes = useLoaderData().recipes;
   const RecipeList = recipes.map((recipe) => {
@@ -35,3 +39,6 @@ export const loader = async ({ request, params }) => {
   }
   return response;
 };
+=======
+ export default CookbookRecipes;
+>>>>>>> parent of de64699 (fixing bug + fetching recipes)

@@ -8,9 +8,12 @@ import CookbookNew from "./Pages/CookbookNew";
 import CookbookRecipes from "./Pages/CookbookRecipes";
 import ErrorPage from "./Pages/ErrorPage";
 import { loader as loadCookbooks } from "./Pages/Cookbooks";
+<<<<<<< HEAD
 import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
 import CookbookDetails from "./Pages/CookbookDetails";
+=======
+>>>>>>> parent of de64699 (fixing bug + fetching recipes)
 
 const router = createBrowserRouter([
   {
@@ -21,8 +24,10 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       {
         path: "cookbooks",
+        element: <Cookbooks />,
         loader: loadCookbooks,
         children: [
+<<<<<<< HEAD
           { index: true, element: <Cookbooks />, loader: loadCookbooks },
           {
             path: ":cookbookId",
@@ -36,6 +41,9 @@ const router = createBrowserRouter([
               },
             ],
           },
+=======
+          { path: "recipes", element: <CookbookRecipes /> },
+>>>>>>> parent of de64699 (fixing bug + fetching recipes)
         ],
       },
       { path: "new", element: <CookbookNew /> },
