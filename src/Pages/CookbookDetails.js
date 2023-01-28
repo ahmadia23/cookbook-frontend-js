@@ -1,4 +1,4 @@
-import { json, Outlet, useParams, useRouteLoaderData } from "react-router";
+import { json, Outlet } from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/CookbookCard.css";
 import { Fragment } from "react";
@@ -9,14 +9,18 @@ const CookbookDetails = () => {
   return (
     <Fragment>
       <div className="cookbook-page">
-        <img src={cookbook.image} alt={cookbook.name} className="cookbook-page__image" />
+        <img
+          src={cookbook.image}
+          alt={cookbook.name}
+          className="cookbook-page__image"
+        />
         <div className="cookbook-page__content">
           <h3 className="cookbook-page__title">{cookbook.name}</h3>
           <p className="cookbook-page__description">{cookbook.description}</p>
           <span className="cookbook-page__theme">{cookbook.theme}</span>
         </div>
       </div>
-      <Outlet/>
+      <Outlet />
     </Fragment>
   );
 };
