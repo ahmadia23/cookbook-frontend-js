@@ -1,7 +1,10 @@
 import CookbookCard from "./CookbookCard";
 import { useLoaderData, useRouteError } from "react-router";
+import { NavLink } from "react-router-dom";
+import classes from "./CookbookList.module.css";
 
 function CookbookList() {
+
   const data = useLoaderData();
   const cookbooks = data.cookbooks;
 
@@ -9,7 +12,9 @@ function CookbookList() {
     <div>
       <div>hello !</div>
       {cookbooks.map((cookbook) => (
-        <CookbookCard key={cookbook.id} {...cookbook} />
+        <NavLink key={cookbook.id} to={`${cookbook.id}/recipes`} className={classes.links} end>
+            <CookbookCard key={cookbook.id} {...cookbook}  className={classes}/>
+        </NavLink>
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-.cookbook-card {
+.recipe-card {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -6,41 +6,36 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
-  margin: 3rem auto;
-  background-color: #28282b;
 }
 
-.cookbook-card__image {
+.recipe-card__image {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: 4px;
   margin-right: 16px;
 }
 
-.cookbook-card__content {
+.recipe-card__content {
   flex: 1;
 }
 
-.cookbook-card__title {
+.recipe-card__title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-.cookbook-card__description {
+.recipe-card__description {
   font-size: 18px;
   color: #999;
   margin-bottom: 8px;
 }
 
-.cookbook-card__theme {
+.recipe-card__time {
   font-size: 18px;
   color: #999;
-
 }
 
-.cookbook-card:hover {
+.recipe-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #242424;
-  opacity: 0.8;
 }

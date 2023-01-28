@@ -1,0 +1,8 @@
+.links {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.cookbooks {
+  margin: 10rem auto;
+}
