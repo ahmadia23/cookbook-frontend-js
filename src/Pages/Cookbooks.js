@@ -2,6 +2,8 @@ import { json, Outlet } from "react-router";
 import CookbookList from "../components/CookbookList";
 import { NavLink } from "react-router-dom";
 import classes from "../UI/link.module.css";
+import Button from "../UI/Button";
+import React from "react";
 
 const Cookbooks = () => {
 
@@ -9,25 +11,15 @@ const Cookbooks = () => {
     <div>
       <h1>Hello from cookbooks</h1>
       <CookbookList></CookbookList>
-      <NavLink
-        to="/new"
-        className={({ isActive }) =>
-          isActive
-            ? classes["regular-link"] + classes.active
-            : classes["regular-link"]
-        }
-      >
-        New Cookbook
-      </NavLink>
+      <Button to="/new" linkName="New Cokkbook"/>
       <Outlet></Outlet>
     </div>
   );
 };
 
 export const loader = async () => {
-  const response = await fetch("http://localhost:8080/cookbooksaasas");
+  const response = await fetch("http://localhost:8080/cookbooks");
   if (!response.ok) {
-    console.log('coucou')
     return json({ message: "could not fetch cookbooks" }, { status: 500 });
   } else {
     return response;

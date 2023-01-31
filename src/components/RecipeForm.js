@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import UseInput from "../hooks/use-input";
-import "./CookbookForm.css";
+import "./RecipeForm.css";
 import { Form } from "react-router-dom";
 
-const CookbookForm = (props) => {
+const RecipeForm = (props) => {
   // const validateName = (name) => {
   //   return name.trim().length !== 0;
   //
@@ -38,11 +38,11 @@ const CookbookForm = (props) => {
       </label>
       <br />
       <label>
-        Theme:
+        Time:
         <input
-          type="text"
-          name="theme"
-          value={props.themeValue}
+          type="number"
+          name="time"
+          value={props.timeValue}
           className="cookbook-form-input"
         />
       </label>
@@ -58,10 +58,10 @@ const CookbookForm = (props) => {
       </label>
       <br />
       <button type="submit" className="cookbook-form-submit">
-        Create Cookbook
+        Add Recipe
       </button>
     </Form>
   );
 };
 
-export default CookbookForm;
+export default RecipeForm;

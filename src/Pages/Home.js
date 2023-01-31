@@ -1,4 +1,5 @@
 // import classes from "./Home.module.css";
+import React from "react";
 import { Fragment } from "react";
 import Banner from "../components/Banner";
 

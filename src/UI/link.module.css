@@ -8,3 +8,8 @@
   color: var(--color-primary-800);
   text-decoration: underline;
 }
+
+.links{
+  text-decoration: none;
+  color: var(--text-color);
+}

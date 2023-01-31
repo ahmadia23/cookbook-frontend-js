@@ -4,16 +4,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home";
 import RootLayout from "./Pages/Root";
 import Cookbooks from "./Pages/Cookbooks";
-import CookbookNew from "./Pages/CookbookNew";
+import CookbookNew, { action } from "./Pages/CookbookNew";
 import CookbookRecipes from "./Pages/CookbookRecipes";
 import ErrorPage from "./Pages/ErrorPage";
+import CookbookDetails from "./Pages/CookbookDetails";
+import RecipeNew from "./Pages/RecipeNew";
+import Login from "./Pages/Login";
 import { loader as loadCookbooks } from "./Pages/Cookbooks";
-<<<<<<< HEAD
 import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
-import CookbookDetails from "./Pages/CookbookDetails";
-=======
->>>>>>> parent of de64699 (fixing bug + fetching recipes)
+import { action as sendNewCookbook } from "./Pages/CookbookNew";
+import { action as sendNewRecipe } from "./Pages/RecipeNew";
+import { action as loginAction} from "./Pages/Login";
+
+// import { action as sendNewCookbook } from "./components/CookbookForm";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +28,8 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       {
         path: "cookbooks",
-        element: <Cookbooks />,
         loader: loadCookbooks,
         children: [
-<<<<<<< HEAD
           { index: true, element: <Cookbooks />, loader: loadCookbooks },
           {
             path: ":cookbookId",
@@ -39,14 +41,13 @@ const router = createBrowserRouter([
                 loader: loadCookbookRecipes,
                 element: <CookbookRecipes />,
               },
+              { path: "new", action: sendNewRecipe, element: <RecipeNew /> },
             ],
           },
-=======
-          { path: "recipes", element: <CookbookRecipes /> },
->>>>>>> parent of de64699 (fixing bug + fetching recipes)
         ],
       },
-      { path: "new", element: <CookbookNew /> },
+      { path: "new", action: sendNewCookbook, element: <CookbookNew /> },
+      {path: "/login", action:loginAction, element: <Login/>}
     ],
   },
 ]);

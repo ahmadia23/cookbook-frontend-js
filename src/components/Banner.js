@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import classes from "./Banner.module.css"
-
+import React from "react";
 const Banner = () => {
   return (
     <Fragment>
@@ -13,9 +13,9 @@ const Banner = () => {
             Change your life and learn to code at one of our campuses around the
             world.
           </p>
-          <a className="btn btn-flat" href="#">
+          {/* <a className="btn btn-flat" href="#">
             Apply now
-          </a>
+          </a> */}
         </div>
       </div>
       <div className="home-content mt-5">

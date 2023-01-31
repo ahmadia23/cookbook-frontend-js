@@ -1,4 +1,6 @@
 import CookbookForm from "../components/CookbookForm";
+import React from "react";
+import { json, redirect } from "react-router";
 
 const CookbookNew = () => {
   return (
@@ -10,3 +12,25 @@ const CookbookNew = () => {
 }
 
 export default CookbookNew;
+
+export const action = async({request, params}) => {
+  const data = await request.formData();
+  const cookbookData = {
+    name: data.get('name'),
+    description: data.get('description'),
+    theme: data.get('theme'),
+    image: data.get('image'),
+  };
+  console.log(cookbookData)
+  const response = await fetch("http://localhost:8080/new-cookbook", {
+    method: "POST",
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(cookbookData)
+  });
+  if (!response.ok){
+    throw json({message: "could not add the cookbook"}, {status: 500});
+  }
+  return redirect('/cookbooks');
+};

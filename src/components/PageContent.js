@@ -1,4 +1,5 @@
 import classes from './PageContent.module.css';
+import React from "react";
 
 function PageContent({ title, children }) {
   return (
