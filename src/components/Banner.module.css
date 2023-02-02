@@ -1,9 +1,9 @@
 
 .banner {
   background-size: cover;
-  width: 100% !important;
   padding: 150px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("https://cdn.pixabay.com/photo/2019/11/03/20/33/raspberry-4599580_1280.jpg");
+  height: 70vh;
 }
 
 .banner h1 {

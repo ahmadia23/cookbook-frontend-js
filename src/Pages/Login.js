@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, redirect, useActionData } from "react-router-dom";
 import "../components/RecipeForm.css";
+import store from "../store/index-redux";
 
 const Login = () => {
+  // const [isLogged, setIsLogged] = useState(false);
+
   return (
     <Form
       method="POST"
       className="cookbook-form"
+      // action={isLogged }
       // onSubmit={useActionData(action)}
     >
-      <label>Mail address</label>
+      <label>Email</label>
       <input type="text" name="mail" className="cookbook-form-input"></input>
       <br></br>
       <label>Password</label>
@@ -32,20 +36,10 @@ export const action = async ({ request, params }) => {
   const email = data.get("mail");
   const password = data.get("password");
 
-  const graphqlQuery = {
-    query: `
-        mutation {
-          login(userInput: {email: "${email}", password: "${password}"}){
-            userId
-            token
-          }
-      }
-    `,
-  };
-  const response = await fetch("http://localhost:8080/graphql", {
+ const response = await fetch("http://localhost:8080/graphql", {
     headers: {"Content-Type":  "application/json"},
     method: "POST",
-    body: JSON.stringify(graphqlQuery),
+    body: JSON.stringify(),
   });
 
   const resData = await response.json();

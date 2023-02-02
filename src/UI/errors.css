@@ -1,0 +1,9 @@
+.errorInput {
+  background-color:lightpink;
+  border: solid;
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+}

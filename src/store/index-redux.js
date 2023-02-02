@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cookbookSlice from "./cookbooks-slice";
+import authSlice from "./login";
 
 const store = configureStore({
   reducer: {
-    cookbooks: cookbookSlice.reducer
+    authStatus : authSlice.reducer
   }
 })
 
