@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import UseInput from "../hooks/use-input";
+import React from "react";
+// import UseInput from "../hooks/use-input";
 import "./RecipeForm.css";
 import { Form } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const RecipeForm = (props) => {
   // const [image, setImage] = useState("");
 
   const handleSubmit = (event) => {
-    console.log("I submited the form")
+    console.log("I submited the form");
   };
 
   return (

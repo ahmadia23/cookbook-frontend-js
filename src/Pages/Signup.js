@@ -1,13 +1,18 @@
+// redireiger vers la page signup s'il y a une erreur
+//récupérer le message de l'erreur
+// afficher l'erreur au dessus du forme en rouge
+
 import "../components/RecipeForm.css";
-import React, { useState } from "react";
-import { Form, redirect, useNavigate } from "react-router-dom";
+import React from "react";
+import { Form, redirect, useActionData } from "react-router-dom";
 import UseInput from "../hooks/use-input";
 import "../UI/errors.css";
 
 const Signup = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
-  const navigate = useNavigate();
+  const data = useActionData();
+  console.log("from component loading", data);
 
   const validateEmail = (value) => {
     if (value.trim(" ").length === 0) {
@@ -42,7 +47,6 @@ const Signup = () => {
     hasError: emailHasError,
     inputBlurHandler: emailBlurHandler,
     inputValueHandler: emailValueHandler,
-    inputIsValid: emailIsValid,
     reset: resetEmail,
   } = UseInput(validateEmail);
   const {
@@ -50,7 +54,6 @@ const Signup = () => {
     hasError: passwordHasError,
     inputBlurHandler: passwordBlurHandler,
     inputValueHandler: passwordValueHandler,
-    inputIsValid: passwordIsValid,
     reset: resetPassword,
   } = UseInput(validatePassword);
 
@@ -60,13 +63,13 @@ const Signup = () => {
     reset: resetSndPassword,
   } = UseInput(validatePassword);
 
-
   const emailClasses = emailHasError
     ? "errorInput cookbook-form-input"
     : "cookbook-form-input";
-  const passwordClasses =  passwordValue !== SndPasswordValue
-    ? "errorInput cookbook-form-input"
-    : "cookbook-form-input";
+  const passwordClasses =
+    passwordValue !== SndPasswordValue
+      ? "errorInput cookbook-form-input"
+      : "cookbook-form-input";
 
   let notMatching =
     passwordValue !== SndPasswordValue ? (
@@ -75,6 +78,9 @@ const Signup = () => {
       ""
     );
 
+  resetSndPassword();
+  resetEmail();
+  resetPassword();
 
   return (
     <Form
@@ -85,6 +91,7 @@ const Signup = () => {
       // onSubmit={useActionData(action)}
       // onSubmit={submitHandler}
     >
+      <p className="error-message">{data && data.errorMessage}</p>
       {notMatching}
       {emailHasError && errorMailMessage}
       {passwordHasError && errorPasswordMessage}
@@ -95,6 +102,7 @@ const Signup = () => {
         className={emailClasses}
         onChange={emailValueHandler}
         onBlur={emailBlurHandler}
+        value={emailValue}
       ></input>
       <br></br>
       <label>Password</label>
@@ -104,13 +112,15 @@ const Signup = () => {
         className={passwordClasses}
         onChange={passwordValueHandler}
         onBlur={passwordBlurHandler}
+        value={passwordValue}
       ></input>
       <label>Confirm password</label>
       <input
         type="text"
-        name="password"
+        name="SndPassword"
         className={passwordClasses}
         onChange={SndPasswordValueHandler}
+        value={SndPasswordValue}
       ></input>
       <button type="submit" className="cookbook-form-submit">
         Sign up
@@ -121,8 +131,27 @@ const Signup = () => {
 
 export default Signup;
 
-export const action = async({ request, params }) => {
+export const action = async ({ request, params }) => {
   const data = await request.formData();
-  console.log(data.get("email"));
-  redirect("/");
+  console.log("from action method", data);
+  const newUser = {
+    email: data.get("email"),
+    password: data.get("password"),
+    confirmedPassword: data.get("SndPassword"),
+  };
+  const response = await fetch("http://localhost:8080/signup", {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify(newUser),
+  });
+
+  if (response.status === 422) {
+    redirect("/signup");
+    return response;
+  }
+  if (response.status === 404) {
+    redirect("/");
+    return response;
+  }
+  return redirect("/login");
 };

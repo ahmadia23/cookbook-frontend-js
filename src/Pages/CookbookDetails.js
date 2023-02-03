@@ -1,8 +1,8 @@
-import { json, Outlet, useParams } from "react-router";
+import { json, Outlet } from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/CookbookCard.css";
 import { Fragment } from "react";
-import React from 'react';
+import React from "react";
 import Button from "../UI/Button";
 
 const CookbookDetails = () => {
@@ -23,13 +23,13 @@ const CookbookDetails = () => {
         </div>
       </div>
       <Outlet />
-      <Button to=""/>
+      <Button to="" />
     </Fragment>
   );
 };
 export default CookbookDetails;
 
-export const loader = async({request, params}) => {
+export const loader = async ({ request, params }) => {
   const id = params.cookbookId;
   const response = await fetch(`http://localhost:8080/cookbooks/${id}`);
   if (!response.ok) {
