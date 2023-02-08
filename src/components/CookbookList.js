@@ -1,12 +1,13 @@
 import CookbookCard from "./CookbookCard";
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useRouteLoaderData } from "react-router";
 import { NavLink } from "react-router-dom";
 import classes from "./CookbookList.module.css";
 
 function CookbookList() {
   const data = useLoaderData();
   const cookbooks = data.cookbooks;
+  const token = useRouteLoaderData("tokenLoader");
 
   return (
     <div>
@@ -14,7 +15,7 @@ function CookbookList() {
       {cookbooks.map((cookbook) => (
         <NavLink
           key={cookbook.id}
-          to={`/cookbooks/${cookbook.id}/recipes`}
+          to={token ? `/cookbooks/${cookbook.id}/recipes` : "/login"}
           className={classes.links}
           end
         >

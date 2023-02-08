@@ -7,12 +7,15 @@ import React from "react";
 import { Form, redirect, useActionData } from "react-router-dom";
 import UseInput from "../hooks/use-input";
 import "../UI/errors.css";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
   const data = useActionData();
-  console.log("from component loading", data);
+
+  const stateTest = useSelector((state) => state);
+  console.log(stateTest);
 
   const validateEmail = (value) => {
     if (value.trim(" ").length === 0) {
@@ -47,20 +50,17 @@ const Signup = () => {
     hasError: emailHasError,
     inputBlurHandler: emailBlurHandler,
     inputValueHandler: emailValueHandler,
-    reset: resetEmail,
   } = UseInput(validateEmail);
   const {
     inputValue: passwordValue,
     hasError: passwordHasError,
     inputBlurHandler: passwordBlurHandler,
     inputValueHandler: passwordValueHandler,
-    reset: resetPassword,
   } = UseInput(validatePassword);
 
   const {
     inputValue: SndPasswordValue,
     inputValueHandler: SndPasswordValueHandler,
-    reset: resetSndPassword,
   } = UseInput(validatePassword);
 
   const emailClasses = emailHasError
@@ -78,9 +78,9 @@ const Signup = () => {
       ""
     );
 
-  resetSndPassword();
-  resetEmail();
-  resetPassword();
+  // resetSndPassword();
+  // resetEmail();
+  // resetPassword();
 
   return (
     <Form

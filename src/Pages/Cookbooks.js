@@ -1,14 +1,15 @@
-import { json, Outlet } from "react-router";
+import { json, Outlet, useRouteLoaderData } from "react-router";
 import CookbookList from "../components/CookbookList";
 import Button from "../UI/Button";
 import React from "react";
 
 const Cookbooks = () => {
+  const token = useRouteLoaderData("tokenLoader");
   return (
     <div>
       <h1>Hello from cookbooks</h1>
       <CookbookList></CookbookList>
-      <Button to="/new" linkName="New Cokkbook" />
+      <Button to={token ? "/new" : "/login"} linkName="New Cookbook" />
       <Outlet></Outlet>
     </div>
   );

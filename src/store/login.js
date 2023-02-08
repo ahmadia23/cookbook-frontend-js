@@ -7,12 +7,14 @@ const authSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     token: "",
+    userId: "",
   },
   reducers: {
     setLogin: (state, action) => {
       if (!state.isLoggedIn) {
         state.isLoggedIn = true;
-        state.token = action.payload;
+        state.token = action.payload.token;
+        state.userId = action.payload.userId;
       }
     },
     setLogout: (state, action) => {

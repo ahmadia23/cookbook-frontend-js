@@ -3,7 +3,6 @@ import { useLoaderData } from "react-router";
 import "../components/CookbookCard.css";
 import { Fragment } from "react";
 import React from "react";
-import Button from "../UI/Button";
 
 const CookbookDetails = () => {
   const cookbook = useLoaderData().cookbook;
@@ -23,7 +22,6 @@ const CookbookDetails = () => {
         </div>
       </div>
       <Outlet />
-      <Button to="" />
     </Fragment>
   );
 };

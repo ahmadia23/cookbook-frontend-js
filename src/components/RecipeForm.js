@@ -57,6 +57,16 @@ const RecipeForm = (props) => {
         />
       </label>
       <br />
+      {/* <label>
+        Ingredients:
+        <input
+          type="text"
+          name="image"
+          value={props.ingedientsValue}
+          className="cookbook-form-input"
+        />
+      </label> */}
+      <br />
       <button type="submit" className="cookbook-form-submit">
         Add Recipe
       </button>

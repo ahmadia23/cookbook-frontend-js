@@ -1,9 +1,11 @@
 import { Fragment } from "react";
 import React from "react";
 import classes from "./MainNavigation.module.css";
-import { NavLink } from "react-router-dom";
+import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
+  const token = useRouteLoaderData("tokenLoader");
+
   return (
     <Fragment>
       <header className={classes.header}>
@@ -28,7 +30,7 @@ const MainNavigation = () => {
               }
             >
               {" "}
-              Recipes
+              Recipes to Go
             </NavLink>
           </li>
           <li>
@@ -42,28 +44,45 @@ const MainNavigation = () => {
               Cookbooks
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/signup"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Signup
-            </NavLink>
-          </li>
+          {token ? (
+            ""
+          ) : (
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+                end
+              >
+                Login
+              </NavLink>
+            </li>
+          )}
+          {!token ? (
+            ""
+          ) : (
+            <li>
+              <Form action="/logout" method="Post">
+                <button>Logout</button>
+              </Form>
+            </li>
+          )}
+          {token ? (
+            ""
+          ) : (
+            <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+                end
+              >
+                Signup
+              </NavLink>
+            </li>
+          )}
         </ul>
       </header>
     </Fragment>

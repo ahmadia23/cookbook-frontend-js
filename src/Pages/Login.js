@@ -1,16 +1,11 @@
 import React from "react";
-import { Form, redirect, useActionData } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import "../components/RecipeForm.css";
 import UseInput from "../hooks/use-input";
-import { loginActions } from "../store/login";
-import { useDispatch } from "react-redux";
 
 const Login = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
-  const dispatch = useDispatch();
-  const data = useActionData();
-  console.log("from component logging", data);
 
   const validateEmail = (value) => {
     if (value.trim(" ").length === 0) {
@@ -38,6 +33,14 @@ const Login = () => {
       );
       return false;
     }
+    if (value.length < 5) {
+      errorPasswordMessage = (
+        <p className="error-message">
+          Password should be at least of 5 characters
+        </p>
+      );
+      return false;
+    }
   };
 
   const {
@@ -45,7 +48,6 @@ const Login = () => {
     hasError: emailHasError,
     inputBlurHandler: emailBlurHandler,
     inputValueHandler: emailValueHandler,
-    reset: resetEmail,
   } = UseInput(validateEmail);
 
   const {
@@ -53,7 +55,6 @@ const Login = () => {
     hasError: passwordHasError,
     inputBlurHandler: passwordBlurHandler,
     inputValueHandler: passwordValueHandler,
-    reset: resetPassword,
   } = UseInput(validatePassword);
 
   const emailClasses = emailHasError
@@ -63,18 +64,9 @@ const Login = () => {
   const passwordClasses = passwordHasError
     ? "errorInput cookbook-form-input"
     : "cookbook-form-input";
-  // const [isLogged, setIsLogged] = useState(false);
-  console.log(data);
-  resetEmail();
-  resetPassword();
 
   return (
-    <Form
-      method="POST"
-      className="cookbook-form"
-      // action={isLogged }
-      // onSubmit={useActionData(action)}
-    >
+    <Form method="POST" className="cookbook-form">
       {emailHasError && errorMailMessage}
       {passwordHasError && errorPasswordMessage}
       <label>Email</label>
@@ -122,5 +114,15 @@ export const action = async ({ request, params }) => {
     return response;
   }
 
+  const resData = await response.json();
+  const token = resData.token;
+  localStorage.setItem("token", token);
+
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem("expiration", expiration.toISOString());
+
+  const userId = resData.userId;
+  localStorage.setItem("userId", userId);
   return redirect("/");
 };

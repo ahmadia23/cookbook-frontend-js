@@ -12,7 +12,7 @@ const Button = (props) => {
           : classes["regular-link"]
       }
     >
-     {props.linkName}
+      {props.linkName}
     </NavLink>
   );
 };
