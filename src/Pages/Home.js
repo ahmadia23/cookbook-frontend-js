@@ -1,13 +1,14 @@
 // import classes from "./Home.module.css";
 import React from "react";
 import { Fragment } from "react";
-import { useRouteLoaderData } from "react-router";
+import { useActionData, useRouteLoaderData } from "react-router";
 import Banner from "../components/Banner";
 import "../UI/Home.css";
 
 const Home = () => {
   const token = useRouteLoaderData("tokenLoader");
-  console.log(token);
+  const message = useActionData();
+  console.log(message);
   return (
     <Fragment>
       <Banner></Banner>

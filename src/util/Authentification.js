@@ -1,4 +1,5 @@
 import { redirect } from "react-router";
+import { json } from "react-router";
 
 export const getTokenDuration = () => {
   const storedExpirationDate = localStorage.getItem("expiration");
@@ -42,4 +43,38 @@ export const checkAuthLoader = () => {
     return redirect("/login");
   }
   return null;
+};
+
+export const authorizeActions = async ({ request, params }, accessType) => {
+  const token = getAuthToken();
+  const cookbookId = params.cookbookId;
+
+  const response = await fetch(
+    `http://localhost:8080/allow/${cookbookId}?accessType=${accessType}`,
+    {
+      headers: { Authorization: "Bearer " + token },
+    }
+  );
+
+  if (response.status === 403) {
+    throw json({ message: "Forbidden" }, { status: 403 });
+  }
+  if (!response.ok) {
+    throw json({ message: "could not fetch the result" }, { status: 500 });
+  }
+
+  return response;
+};
+
+export const authRecipeAdd = async (
+  { request, params },
+  accessType = "addNewRecipe"
+) => {
+  return authorizeActions({ request, params }, accessType);
+};
+export const authRecipeDelete = async (
+  { request, params },
+  accessType = "deleteRecipe"
+) => {
+  return authorizeActions({ request, params }, accessType);
 };

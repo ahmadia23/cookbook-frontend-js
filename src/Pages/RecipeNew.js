@@ -1,14 +1,9 @@
 import RecipeForm from "../components/RecipeForm";
 import React from "react";
-import { useParams, json, useLoaderData, redirect } from "react-router";
+import { useLoaderData, redirect, json } from "react-router";
 import { getAuthToken } from "../util/Authentification";
 
 const RecipeNew = () => {
-  const isAllowed = useLoaderData().authorized;
-  if (!isAllowed) {
-    redirect("/");
-  }
-
   return (
     <div>
       <h1>Hello from the new recipe</h1>
@@ -19,25 +14,32 @@ const RecipeNew = () => {
 
 export default RecipeNew;
 
-export const action = async ({ request, params }) => {
-  // const response = await fetch(
-  //   `http://localhost:8080/cookbooks/${id}/add-recipe`, {
-  //     headers:
-  //   });
-};
-
-export const loader = async ({ request, params }) => {
-  const token = getAuthToken();
+export const sendNewRecipe = async ({ request, params }) => {
+  const data = await request.formData();
   const cookbookId = params.cookbookId;
+  const token = getAuthToken();
+  const newRecipe = {
+    name: data.get("name"),
+    description: data.get("description"),
+    time: data.get("time"),
+    imageUrl: data.get("image"),
+  };
+  console.log(newRecipe);
+  const response = await fetch(
+    `http://localhost:8080/cookbooks/${cookbookId}/add-recipe`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(newRecipe),
+    }
+  );
 
-  console.log(token);
-
-  console.log(cookbookId);
-  const response = await fetch(`http://localhost:8080/allow/${cookbookId}`, {
-    headers: { Authorization: "Bearer " + token },
-  });
-  if (!response.ok) {
-    throw json({ message: "could not fetch get the result" }, { status: 500 });
+  if (response.status === 403) {
+    throw json({ message: "Unauthorized to add a new recipe" });
   }
-  return response;
+  console.log(response);
+  return redirect(`/cookbooks/${cookbookId}/recipes`);
 };

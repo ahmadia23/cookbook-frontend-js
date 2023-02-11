@@ -12,12 +12,8 @@ const RecipeForm = (props) => {
   // const [theme, setTheme] = useState("");
   // const [image, setImage] = useState("");
 
-  const handleSubmit = (event) => {
-    console.log("I submited the form");
-  };
-
   return (
-    <Form onSubmit={handleSubmit} method="post" className="cookbook-form">
+    <Form method="post" action={props.action} className="cookbook-form">
       <label>
         Name:
         <input

@@ -1,46 +1,50 @@
 import { json, Outlet, redirect, useParams } from "react-router";
 import { useLoaderData } from "react-router";
-import "../components/CookbookCard.css";
+import "../components/RecipeCard.css";
 import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
 import { getAuthToken } from "../util/Authentification";
 
-const CookbookDetails = () => {
-  const cookbook = useLoaderData().cookbook;
+const RecipeDetails = () => {
+  const recipe = useLoaderData().recipe;
   const submit = useSubmit();
+  const recipeId = useParams().recipeId;
   const cookbookId = useParams().cookbookId;
   const adminMode = useLoaderData().adminMode;
 
-  const removeCookbookHandler = (event) => {
+  const removeRecipeHandler = (event) => {
     event.preventDefault();
     const proceed = window.confirm("are you sure ?");
 
     if (proceed) {
-      submit(null, {
-        method: "delete",
-        action: `/cookbooks/${cookbookId}/delete`,
-      });
+      submit(
+        { recipeId: recipeId },
+        {
+          method: "delete",
+          action: `/cookbooks/${cookbookId}/recipes/${recipeId}/delete`,
+        }
+      );
     }
   };
 
   return (
     <Fragment>
-      <div className="cookbook-page">
+      <div className="recipe-page">
         <img
-          src={cookbook.image}
-          alt={cookbook.name}
-          className="cookbook-page__image"
+          src={recipe.imageUrl}
+          alt={recipe.name}
+          className="recipe-page__image"
         />
-        <div className="cookbook-page__content">
-          <h3 className="cookbook-page__title">{cookbook.name}</h3>
-          <p className="cookbook-page__description">{cookbook.description}</p>
-          <span className="cookbook-page__theme">{cookbook.theme}</span>
+        <div className="recipe-page__content">
+          <h3 className="recipe-page__title">{recipe.name}</h3>
+          <p className="recipe-page__description">{recipe.description}</p>
+          <span className="recipe-page__theme">{recipe.time}</span>
         </div>
       </div>
       {adminMode ? (
-        <Form onSubmit={removeCookbookHandler}>
-          <button>Remove this cookbook</button>
+        <Form onSubmit={removeRecipeHandler}>
+          <button>Remove this recipe</button>
         </Form>
       ) : (
         ""
@@ -49,13 +53,14 @@ const CookbookDetails = () => {
     </Fragment>
   );
 };
-export default CookbookDetails;
+export default RecipeDetails;
 
 export const loader = async ({ request, params }) => {
+  const recipeId = params.recipeId;
   const cookbookId = params.cookbookId;
   const token = getAuthToken();
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${cookbookId}`,
+    `http://localhost:8080/cookbooks/${cookbookId}/${recipeId}`,
     {
       headers: {
         Authorization: "Bearer " + token,
@@ -64,7 +69,7 @@ export const loader = async ({ request, params }) => {
   );
 
   if (!response.ok) {
-    return json({ message: "could not fetch the cookbook" }, { status: 500 });
+    return json({ message: "could not fetch the recipe" }, { status: 500 });
   } else {
     return response;
   }
@@ -74,9 +79,13 @@ export const loader = async ({ request, params }) => {
 
 export const action = async ({ request, params }) => {
   const token = getAuthToken();
+  const recipeId = params.recipeId;
+  console.log(recipeId);
   const cookbookId = params.cookbookId;
+
+  console.log("right action cookbookid is: ", cookbookId);
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${cookbookId}`,
+    `http://localhost:8080/recipes/${recipeId}/delete`,
     {
       headers: {
         Authorization: "Bearer " + token,
@@ -96,5 +105,5 @@ export const action = async ({ request, params }) => {
     return response;
   }
 
-  return redirect(`/cookbooks`);
+  return redirect(`/cookbooks/${cookbookId}/recipes`);
 };

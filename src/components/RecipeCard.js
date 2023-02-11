@@ -1,10 +1,10 @@
-import React from 'react';
-import './RecipeCard.css';
+import React from "react";
+import "./RecipeCard.css";
 
-const RecipeCard = ({ name, image, description, time }) => {
+const RecipeCard = ({ name, imageUrl, description, time }) => {
   return (
     <div className="recipe-card">
-      <img src={image} alt={name} className="recipe-card__image" />
+      <img src={imageUrl} alt={name} className="recipe-card__image" />
       <div className="recipe-card__content">
         <h3 className="recipe-card__title">{name}</h3>
         <p className="recipe-card__description">{description}</p>
@@ -12,6 +12,6 @@ const RecipeCard = ({ name, image, description, time }) => {
       </div>
     </div>
   );
-}
+};
 
 export default RecipeCard;

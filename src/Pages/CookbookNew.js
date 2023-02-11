@@ -36,5 +36,6 @@ export const action = async ({ request, params }) => {
   if (!response.ok) {
     throw json({ message: "could not add the cookbook" }, { status: 500 });
   }
+  console.log(response);
   return redirect("/cookbooks");
 };

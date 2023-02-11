@@ -8,6 +8,7 @@ import CookbookNew from "./Pages/CookbookNew";
 import CookbookRecipes from "./Pages/CookbookRecipes";
 import ErrorPage from "./Pages/ErrorPage";
 import CookbookDetails from "./Pages/CookbookDetails";
+import RecipeDetails from "./Pages/RecipeDetails";
 import RecipeNew from "./Pages/RecipeNew";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -15,14 +16,18 @@ import store from "./store/index-redux";
 import { loader as loadCookbooks } from "./Pages/Cookbooks";
 import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
-import { loader as loadNewRecipe } from "./Pages/RecipeNew";
+import { loader as loadRecipeDetails } from "./Pages/RecipeDetails";
 import { checkAuthLoader } from "./util/Authentification";
 import { tokenLoader } from "./util/Authentification";
+import { authRecipeAdd } from "./util/Authentification";
+import { authRecipeDelete } from "./util/Authentification";
 import { action as sendNewCookbook } from "./Pages/CookbookNew";
-import { action as sendNewRecipe } from "./Pages/RecipeNew";
+import { sendNewRecipe } from "./Pages/RecipeNew";
 import { action as loginAction } from "./Pages/Login";
 import { action as createNewUser } from "./Pages/Signup";
 import { action as logoutAction } from "./Pages/Logout";
+import { action as deleteCookbook } from "./Pages/CookbookDetails";
+import { action as deleteRecipe } from "./Pages/RecipeDetails";
 import { Provider } from "react-redux";
 
 // import { action as sendNewCookbook } from "./components/CookbookForm";
@@ -43,19 +48,41 @@ const router = createBrowserRouter([
           { index: true, element: <Cookbooks />, loader: loadCookbooks },
           {
             path: ":cookbookId",
-            loader: loadCookbookDetails,
-            element: <CookbookDetails />,
             children: [
               {
+                index: true,
+                loader: loadCookbookDetails,
+                element: <CookbookDetails />,
+              },
+              {
                 path: "recipes",
-                loader: loadCookbookRecipes,
-                element: <CookbookRecipes />,
+                children: [
+                  {
+                    index: true,
+                    loader: loadCookbookRecipes,
+                    element: <CookbookRecipes />,
+                  },
+                  {
+                    path: ":recipeId",
+                    loader: loadRecipeDetails,
+                    element: <RecipeDetails />,
+                  },
+                  {
+                    path: ":recipeId/delete",
+                    loader: authRecipeDelete,
+                    action: deleteRecipe,
+                  },
+                ],
               },
               {
                 path: "new",
                 action: sendNewRecipe,
-                loader: loadNewRecipe,
+                loader: authRecipeAdd,
                 element: <RecipeNew />,
+              },
+              {
+                path: "delete",
+                action: deleteCookbook,
               },
             ],
           },

@@ -13,14 +13,14 @@ import { getAuthToken } from "../util/Authentification";
 
 const CookbookRecipes = () => {
   const recipes = useLoaderData().recipes;
-  const id = useParams().cookbookId;
+  const cookbookId = useParams().cookbookId;
   const adminMode = useLoaderData().adminMode;
 
   const RecipeList = recipes.map((recipe) => {
     return (
       <NavLink
         key={recipe.id}
-        // to={`/cookbooks/${cookbook.id}/recipes`}
+        to={`/cookbooks/${cookbookId}/recipes/${recipe.id}`}
         className={classes.links}
         end
       >
@@ -35,7 +35,7 @@ const CookbookRecipes = () => {
       {RecipeList}
       {adminMode ? (
         <Button
-          to={`/cookbooks/${id}/new`}
+          to={`/cookbooks/${cookbookId}/new`}
           linkName="Add a new recipe"
         ></Button>
       ) : (
