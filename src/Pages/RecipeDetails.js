@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
 import { getAuthToken } from "../util/Authentification";
+import Button from "../UI/Button";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData().recipe;
@@ -12,6 +13,7 @@ const RecipeDetails = () => {
   const recipeId = useParams().recipeId;
   const cookbookId = useParams().cookbookId;
   const adminMode = useLoaderData().adminMode;
+  console.log("hello there");
 
   const removeRecipeHandler = (event) => {
     event.preventDefault();
@@ -44,8 +46,13 @@ const RecipeDetails = () => {
       </div>
       {adminMode ? (
         <Form onSubmit={removeRecipeHandler}>
-          <button>Remove this recipe</button>
+          <Button linkName="Remove this recipe"></Button>
         </Form>
+      ) : (
+        ""
+      )}
+      {adminMode ? (
+        <Button to={`edit`} linkName="edit this recipe"></Button>
       ) : (
         ""
       )}

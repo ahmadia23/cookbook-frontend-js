@@ -1,25 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 // import UseInput from "../hooks/use-input";
 import "./RecipeForm.css";
 import { Form } from "react-router-dom";
 
 const RecipeForm = (props) => {
-  // const validateName = (name) => {
-  //   return name.trim().length !== 0;
-  //
-  // const [name, setName] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [theme, setTheme] = useState("");
-  // const [image, setImage] = useState("");
+  const [name, setName] = useState(props.name);
+  const [description, setDescription] = useState(props.description);
+  const [time, setTime] = useState(props.time);
+  const [image, setImage] = useState(props.imageUrl);
+
+  const nameValueHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const descriptionValueHandler = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const timeValueHandler = (event) => {
+    setTime(event.target.value);
+  };
+
+  const imageValueHandler = (event) => {
+    setImage(event.target.value);
+  };
 
   return (
-    <Form method="post" action={props.action} className="cookbook-form">
+    <Form method="post" className="cookbook-form">
       <label>
         Name:
         <input
+          onChange={nameValueHandler}
           type="text"
           name="name"
-          value={props.nameValue}
+          value={name}
           className="cookbook-form-input"
         />
       </label>
@@ -27,8 +41,9 @@ const RecipeForm = (props) => {
       <label>
         Description:
         <textarea
+          onChange={descriptionValueHandler}
           name="description"
-          value={props.descriptionValue}
+          value={description}
           className="cookbook-form-input"
         />
       </label>
@@ -36,9 +51,10 @@ const RecipeForm = (props) => {
       <label>
         Time:
         <input
+          onChange={timeValueHandler}
           type="number"
           name="time"
-          value={props.timeValue}
+          value={time}
           className="cookbook-form-input"
         />
       </label>
@@ -46,9 +62,10 @@ const RecipeForm = (props) => {
       <label>
         Image URL:
         <input
+          onChange={imageValueHandler}
           type="text"
           name="image"
-          value={props.imageValue}
+          value={image}
           className="cookbook-form-input"
         />
       </label>
@@ -64,7 +81,7 @@ const RecipeForm = (props) => {
       </label> */}
       <br />
       <button type="submit" className="cookbook-form-submit">
-        Add Recipe
+        {props.editMode ? "Edit this recipe" : "Add Recipe"}
       </button>
     </Form>
   );

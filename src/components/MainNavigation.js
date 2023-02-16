@@ -12,18 +12,6 @@ const MainNavigation = (props) => {
         <ul className={classes.list}>
           <li>
             <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              {" "}
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               to="cookbooks/recipes"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined

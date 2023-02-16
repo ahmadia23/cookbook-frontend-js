@@ -3,7 +3,8 @@ import React from "react";
 import { Fragment } from "react";
 import { useActionData, useRouteLoaderData } from "react-router";
 import Banner from "../components/Banner";
-import "../UI/Home.css";
+import homePng from "../images/home-sweet-recipe.png";
+import PromessCard from "../components/Home/PromessCard";
 
 const Home = () => {
   const token = useRouteLoaderData("tokenLoader");
@@ -14,12 +15,7 @@ const Home = () => {
       <Banner></Banner>
       <section className="container">
         <div className="home-content mt-5">
-          <p className="home-card">
-            Do you love to cook and create amazing dishes in the kitchen? Do you
-            have a passion for trying new recipes and discovering the latest
-            cooking trends? Look no further, because our cookbook application
-            has everything you need to bring your culinary dreams to life.
-          </p>
+          <PromessCard src={homePng} />
           <p className="home-card">
             With our platform, you can create your own personalized cookbook,
             tailored to your specific theme and preferences. Write down your

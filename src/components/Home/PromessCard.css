@@ -1,0 +1,22 @@
+.home-card {
+  background-color: black;
+  justify-content: space-around;
+  display: flex;
+  padding: 2em;
+  width: 95%;
+}
+.home-card img {
+  height: 60%;
+  width: 50%;
+}
+.home-intro {
+  padding: 2em;
+  line-height: 2rem;
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.home-content {
+  width: 100%;
+}

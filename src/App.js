@@ -21,6 +21,8 @@ import { checkAuthLoader } from "./util/Authentification";
 import { tokenLoader } from "./util/Authentification";
 import { authRecipeAdd } from "./util/Authentification";
 import { authRecipeDelete } from "./util/Authentification";
+import { loadExistingRecipe } from "./Pages/RecipeNew";
+import { sendEditedRecipe } from "./Pages/RecipeNew";
 import { action as sendNewCookbook } from "./Pages/CookbookNew";
 import { sendNewRecipe } from "./Pages/RecipeNew";
 import { action as loginAction } from "./Pages/Login";
@@ -71,6 +73,12 @@ const router = createBrowserRouter([
                     path: ":recipeId/delete",
                     loader: authRecipeDelete,
                     action: deleteRecipe,
+                  },
+                  {
+                    path: ":recipeId/edit",
+                    element: <RecipeNew editMode={true} />,
+                    loader: loadExistingRecipe,
+                    action: sendEditedRecipe,
                   },
                 ],
               },
