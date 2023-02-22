@@ -1,17 +1,31 @@
 import CookbookCard from "./CookbookCard";
-import React from "react";
+import React, { Fragment } from "react";
 import { useLoaderData, useRouteLoaderData } from "react-router";
 import { NavLink } from "react-router-dom";
 import "./CookbookList.css";
 
-function CookbookList() {
+function CookbookList(props) {
   const data = useLoaderData();
-  const cookbooks = data.cookbooks;
+  let cookbooks = data.cookbooks;
   const token = useRouteLoaderData("tokenLoader");
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  };
+
+  if (props.random) {
+    console.log(shuffleArray(cookbooks));
+    cookbooks = shuffleArray(cookbooks).slice(0, 2);
+  }
+
   return (
-    <div>
-      <div>hello !</div>
+    <Fragment>
       <div className="container">
         {cookbooks.map((cookbook) => (
           <NavLink
@@ -24,7 +38,7 @@ function CookbookList() {
           </NavLink>
         ))}
       </div>
-    </div>
+    </Fragment>
   );
 }
 

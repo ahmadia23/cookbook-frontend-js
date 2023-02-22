@@ -14,6 +14,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import SavingRecipes from "./Pages/SavingRecipes";
 import store from "./store/index-redux";
+import TestComponent from "./Pages/TestComponent";
 import { loader as loadCookbooks } from "./Pages/Cookbooks";
 import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";

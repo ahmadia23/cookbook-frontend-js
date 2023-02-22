@@ -1,0 +1,29 @@
+.cookbooks {
+  text-align: center;
+  font-weight: bold;
+  line-height: 2rem;
+  font-size: 18px;
+  margin: 10rem auto;
+}
+
+.intro-text {
+  margin: 8rem auto;
+  text-align: center;
+  font-weight: bold;
+  line-height: 3rem;
+}
+
+.cookbooks-showcase > h2 {
+  margin: 4rem auto;
+  text-align: center;
+  color: var(--color-primary-400);
+  border: solid;
+  width: 100px;
+  padding: 2rem;
+  padding-right: 7rem;
+}
+
+.cookbooks-showcase {
+  background-color: black;
+  padding: 2em;
+}

@@ -1,0 +1,8 @@
+.theme-icons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+li {
+  text-decoration: none;
+}

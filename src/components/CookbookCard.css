@@ -4,8 +4,23 @@
   margin-inline: 4rem;
   background-color: transparent;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
-  background-color: #0d0d0d;
+  background-color: black;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  font-weight: bolder;
+}
+
+.card:hover .card__caption {
+  top: 50%;
+  transform: translateY(-65%);
+}
+.card:hover .card__image {
+  transform: translateY(-10px);
+}
+.card:hover .card__thumb::after {
+  top: 0;
+}
+.card:hover .card__snippet {
+  margin: 20px 0;
 }
 
 .card__image {
@@ -16,11 +31,6 @@
 }
 
 .card__thumb {
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-.card__thumb_up {
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -43,7 +53,7 @@
 
 .card__caption {
   position: absolute;
-  top: 50%;
+  top: 60%;
   z-index: 1;
   padding: 0 20px;
   color: white;
@@ -53,7 +63,7 @@
 }
 
 .card__title {
-  display: -webkit-box;
+  text-align: center;
   max-height: 85px;
   overflow: hidden;
   font-family: "Playfair Display", serif;
@@ -66,7 +76,6 @@
 }
 
 .card__snippet {
-  display: -webkit-box;
   max-height: 150px;
   margin: 20px 0;
   overflow: hidden;
@@ -100,21 +109,4 @@
 .card__end {
   display: flex;
   flex-direction: column;
-}
-
-.card__caption_up {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.card__image_up {
-  transform: translateY(-10px);
-}
-
-.card__thumb_up::after {
-  top: 0;
-}
-
-.card__snippet_up {
-  margin: 20px 0;
 }
