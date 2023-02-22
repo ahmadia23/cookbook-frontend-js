@@ -8,13 +8,18 @@ const RecipeNew = ({ editMode }) => {
   if (!adminMode && editMode) {
     return redirect("/");
   }
+
   const recipe = useLoaderData().recipe;
-  const recipeData = {
-    name: recipe.name,
-    description: recipe.description,
-    time: recipe.time,
-    imageUrl: recipe.imageUrl,
-  };
+  let recipeData;
+  if (recipe) {
+    recipeData = {
+      name: recipe.name,
+      description: recipe.description,
+      time: recipe.time,
+      imageUrl: recipe.imageUrl,
+    };
+  }
+
   return (
     <div>
       <h1>Hello from the new recipe</h1>

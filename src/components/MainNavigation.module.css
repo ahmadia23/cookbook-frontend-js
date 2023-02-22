@@ -3,17 +3,25 @@
   margin: auto;
   padding: 2rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .list {
   display: flex;
   gap: 10rem;
+  margin-top: 1em;
+  justify-content: space-between;
+}
+
+.list li {
+  list-style: none;
+  font-size: large;
+  font-weight: bold;
 }
 
 .list a {
-  text-decoration: none;
   color: var(--color-primary-400);
+  text-decoration: none;
 }
 
 .list a:hover,

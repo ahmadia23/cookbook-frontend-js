@@ -1,10 +1,22 @@
 .home-card {
-  background-color: black;
+  background-color: #0d0d0d;
   justify-content: space-around;
   display: flex;
   padding: 2em;
   width: 95%;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  margin: 8rem auto;
 }
+
+.home-card p {
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  line-height: 4rem;
+  margin: auto 3rem;
+}
+
 .home-card img {
   height: 60%;
   width: 50%;
@@ -15,8 +27,36 @@
   color: white;
   font-weight: bold;
   font-size: x-large;
+  text-align: center;
+  margin: 15rem auto;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.show {
+  opacity: 1 !important;
 }
 
 .home-content {
   width: 100%;
+}
+
+.home-website {
+  background-color: #0d0d0d;
+  flex-direction: column;
+  display: flex;
+  padding: 2em;
+  width: 95%;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  margin: 4rem auto;
+}
+
+.home-website p {
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  line-height: 2rem;
+  margin: 4rem auto;
+  text-align: center;
 }

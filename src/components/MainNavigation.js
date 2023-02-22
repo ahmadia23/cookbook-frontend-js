@@ -2,6 +2,8 @@ import { Fragment } from "react";
 import React from "react";
 import classes from "./MainNavigation.module.css";
 import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
+import "../UI/Home.css";
+import logoHome from "../images/logoSweet.png";
 
 const MainNavigation = (props) => {
   const token = useRouteLoaderData("tokenLoader");
@@ -9,18 +11,25 @@ const MainNavigation = (props) => {
   return (
     <Fragment>
       <header className={classes.header}>
+        <NavLink to="/" className={"logo"}>
+          <img className={"logo-home"} src={logoHome}></img>
+        </NavLink>
         <ul className={classes.list}>
-          <li>
-            <NavLink
-              to="cookbooks/recipes"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              {" "}
-              Recipes to Go
-            </NavLink>
-          </li>
+          {token ? (
+            <li>
+              <NavLink
+                to="/savings"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                {" "}
+                Loved
+              </NavLink>
+            </li>
+          ) : (
+            ""
+          )}
           <li>
             <NavLink
               to="/cookbooks"
@@ -32,10 +41,11 @@ const MainNavigation = (props) => {
               Cookbooks
             </NavLink>
           </li>
+
           {token ? (
             ""
           ) : (
-            <li>
+            <li className="login-actions">
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -45,21 +55,6 @@ const MainNavigation = (props) => {
               >
                 Login
               </NavLink>
-            </li>
-          )}
-          {!token ? (
-            ""
-          ) : (
-            <li>
-              <Form action="/logout" method="Post">
-                <button>Logout</button>
-              </Form>
-            </li>
-          )}
-          {token ? (
-            ""
-          ) : (
-            <li>
               <NavLink
                 to="/signup"
                 className={({ isActive }) =>
@@ -69,6 +64,15 @@ const MainNavigation = (props) => {
               >
                 Signup
               </NavLink>
+            </li>
+          )}
+          {!token ? (
+            ""
+          ) : (
+            <li>
+              <Form action="/logout" method="Post">
+                <button className="home-logout">Logout</button>
+              </Form>
             </li>
           )}
         </ul>

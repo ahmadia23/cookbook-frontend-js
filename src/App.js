@@ -12,17 +12,20 @@ import RecipeDetails from "./Pages/RecipeDetails";
 import RecipeNew from "./Pages/RecipeNew";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import SavingRecipes from "./Pages/SavingRecipes";
 import store from "./store/index-redux";
 import { loader as loadCookbooks } from "./Pages/Cookbooks";
 import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
 import { loader as loadRecipeDetails } from "./Pages/RecipeDetails";
+import { loader as loadSavings } from "./Pages/SavingRecipes";
 import { checkAuthLoader } from "./util/Authentification";
 import { tokenLoader } from "./util/Authentification";
 import { authRecipeAdd } from "./util/Authentification";
 import { authRecipeDelete } from "./util/Authentification";
 import { loadExistingRecipe } from "./Pages/RecipeNew";
 import { sendEditedRecipe } from "./Pages/RecipeNew";
+import { saveRecipe } from "./util/Actions";
 import { action as sendNewCookbook } from "./Pages/CookbookNew";
 import { sendNewRecipe } from "./Pages/RecipeNew";
 import { action as loginAction } from "./Pages/Login";
@@ -80,6 +83,10 @@ const router = createBrowserRouter([
                     loader: loadExistingRecipe,
                     action: sendEditedRecipe,
                   },
+                  {
+                    path: ":recipeId/save",
+                    action: saveRecipe,
+                  },
                 ],
               },
               {
@@ -105,6 +112,7 @@ const router = createBrowserRouter([
       { path: "login", action: loginAction, element: <Login /> },
       { path: "signup", action: createNewUser, element: <Signup /> },
       { path: "logout", action: logoutAction },
+      { path: "savings", loader: loadSavings, element: <SavingRecipes /> },
     ],
   },
 ]);

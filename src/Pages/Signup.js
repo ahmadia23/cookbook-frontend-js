@@ -153,5 +153,8 @@ export const action = async ({ request, params }) => {
     redirect("/");
     return response;
   }
+  if (response.status === 500) {
+    return response;
+  }
   return redirect("/login");
 };

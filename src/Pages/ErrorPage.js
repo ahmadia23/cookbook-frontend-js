@@ -9,7 +9,7 @@ const ErrorPage = () => {
   let message = "something went wrong !";
 
   if (error.status === 500 || error.status === 403) {
-    message = error.data.message;
+    message = error.data.errorMessage;
   }
   if (error.status === 404) {
     message = "could not find ressource or page";

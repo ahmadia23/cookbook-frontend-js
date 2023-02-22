@@ -1,4 +1,74 @@
 .container {
   width: 80%;
-  margin: auto 2em;
+  margin: auto 6em;
+}
+
+.website-section {
+  margin-inline: 10%;
+  width: 100%;
+}
+
+.website-section img {
+  width: 70%;
+  height: 40%;
+}
+
+.home-link {
+  margin-inline: 40%;
+  font-weight: bold;
+  font-size: x-large;
+  line-height: 2rem;
+  text-decoration: none;
+  color: var(--color-primary-400);
+  background-color: black;
+  padding: 0.6em;
+  border: none;
+  margin-top: 4px;
+  transition: 0.6s ease;
+}
+
+.home-link:hover {
+  color: var(--color-primary-800);
+  cursor: pointer;
+  background-color: beige;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.saving-title {
+  text-align: center;
+}
+
+.logo-home {
+  text-decoration: none;
+  text-align: center;
+  background-image: url("../images/logoSweet.png");
+  width: 12rem;
+  /* position: relative;
+  top: -4em;
+  left: 30em; */
+}
+
+.logo {
+  align-self: center;
+}
+
+.home-logout {
+  text-decoration: none;
+  color: var(--color-primary-400);
+  background-color: black;
+  border: none;
+  font-size: 16px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.home-logout:hover,
+.home-logout.active {
+  color: var(--color-primary-800);
+  text-decoration: underline;
+}
+
+.login-actions a {
+  margin-inline: 1rem;
 }

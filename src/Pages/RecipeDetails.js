@@ -1,19 +1,40 @@
-import { json, Outlet, redirect, useParams } from "react-router";
+import {
+  json,
+  Outlet,
+  redirect,
+  useActionData,
+  useNavigate,
+  useParams,
+} from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/RecipeCard.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
 import { getAuthToken } from "../util/Authentification";
 import Button from "../UI/Button";
+import "../UI/errors.css";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData().recipe;
+  const errorMessage = useActionData();
+  const navigate = useNavigate();
+  let error;
+
+  useEffect(() => {
+    if (errorMessage) {
+      error = errorMessage.message;
+      navigate(".");
+    }
+  }, errorMessage);
+
+  if (errorMessage) {
+    console.log("errooooor", errorMessage.message);
+  }
   const submit = useSubmit();
   const recipeId = useParams().recipeId;
   const cookbookId = useParams().cookbookId;
   const adminMode = useLoaderData().adminMode;
-  console.log("hello there");
 
   const removeRecipeHandler = (event) => {
     event.preventDefault();
@@ -29,10 +50,26 @@ const RecipeDetails = () => {
       );
     }
   };
+  const saveRecipeHandler = (event) => {
+    event.preventDefault();
+    console.log("saving...");
+
+    submit(
+      { recipeId: recipeId },
+      {
+        method: "POST",
+        action: `/cookbooks/${cookbookId}/recipes/${recipeId}/save`,
+      }
+    );
+  };
 
   return (
     <Fragment>
+      <p className="error-message">ok</p>
       <div className="recipe-page">
+        <Form onSubmit={saveRecipeHandler}>
+          <button>Save this recipe</button>
+        </Form>
         <img
           src={recipe.imageUrl}
           alt={recipe.name}
@@ -87,10 +124,8 @@ export const loader = async ({ request, params }) => {
 export const action = async ({ request, params }) => {
   const token = getAuthToken();
   const recipeId = params.recipeId;
-  console.log(recipeId);
   const cookbookId = params.cookbookId;
 
-  console.log("right action cookbookid is: ", cookbookId);
   const response = await fetch(
     `http://localhost:8080/recipes/${recipeId}/delete`,
     {
@@ -107,8 +142,6 @@ export const action = async ({ request, params }) => {
     return response;
   }
   if (response.status === 403) {
-    const resData = await response.json();
-    console.log(resData);
     return response;
   }
 
