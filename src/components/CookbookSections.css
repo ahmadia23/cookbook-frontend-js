@@ -1,8 +1,19 @@
-.theme-icons {
+.search-cookbooks {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
 }
 
-li {
-  text-decoration: none;
+.cookbook-theme {
+  color: var(--color-primary-400);
+  background-color: black;
+  padding: 2rem;
+  width: 10rem;
+  height: 12rem;
+  margin: auto 1em;
+}
+
+.noodles {
+  font-size: 3rem;
 }

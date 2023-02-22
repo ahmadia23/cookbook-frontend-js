@@ -1,14 +1,14 @@
 import React from "react";
 import "./CookbookCard.css";
 
-const CookbookCard = ({ name, imageUrl, description, theme }) => {
+const CookbookCard = (props) => {
   return (
-    <div class="card">
+    <div class={props.card}>
       <figure className="card__thumb">
-        <img src={imageUrl} alt={name} class="card__image"></img>
+        <img src={props.imageUrl} alt={props.name} class="card__image"></img>
         <figcaption className="card__caption">
-          <h2 class="card__title">{name}</h2>
-          <p class="card__snippet">{description}</p>
+          <h2 class="card__title">{props.name}</h2>
+          <p class="card__snippet">{props.description}</p>
           <a href="" class="card__button">
             Read more
           </a>

@@ -4,6 +4,7 @@ import Button from "../UI/Button";
 import React, { Fragment } from "react";
 import "./Cookbooks.css";
 import CookbookSection from "../components/CookbookSections";
+import "../components/CookbookCard.css";
 
 const Cookbooks = () => {
   const token = useRouteLoaderData("tokenLoader");
@@ -16,17 +17,21 @@ const Cookbooks = () => {
       </h2>
       <div className="cookbooks-showcase">
         <h2>Selection of the day</h2>
-        <CookbookList random={true}></CookbookList>
+        <CookbookList random={true} smaller={false}></CookbookList>
       </div>
       <section className="cookbooks">
         <div cookbooks-intro></div>
-        <p>
+        <p className="intro-text">
           Each cookbook has a unique theme and includes a collection of
           delicious recipes that are sure to tantalize your taste buds. Whether
           you are a seasoned chef or a beginner in the kitchen, our cookbooks
           offer something for everyone.
         </p>
-        <CookbookSection></CookbookSection>
+        <div className="cookbook-section">
+          <h2 className="cookbook-section-title">Theme Inspiration</h2>
+          <CookbookSection></CookbookSection>
+          <CookbookList smaller={true}></CookbookList>
+        </div>
         <p>
           So take your time, browse through our selection, and get inspired to
           create your own culinary masterpiece. Happy cooking!

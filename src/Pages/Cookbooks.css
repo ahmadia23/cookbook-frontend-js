@@ -7,23 +7,37 @@
 }
 
 .intro-text {
-  margin: 8rem auto;
+  margin: 8rem 4em;
   text-align: center;
   font-weight: bold;
   line-height: 3rem;
+  padding: 2em;
 }
 
 .cookbooks-showcase > h2 {
-  margin: 4rem auto;
+  margin: 6rem auto;
   text-align: center;
   color: var(--color-primary-400);
-  border: solid;
-  width: 100px;
-  padding: 2rem;
-  padding-right: 7rem;
+  font-size: 2em;
 }
 
 .cookbooks-showcase {
   background-color: black;
   padding: 2em;
+  margin: 4rem 8em;
+}
+
+.cookbooks {
+  margin: 10%;
+}
+
+.cookbook-section-title {
+  text-align: center;
+  color: var(--color-primary-400);
+  margin: 2rem auto;
+}
+
+.cookbook-section {
+  background-color: black;
+  padding: 3rem;
 }

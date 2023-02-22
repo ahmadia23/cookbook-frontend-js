@@ -24,6 +24,8 @@ function CookbookList(props) {
     cookbooks = shuffleArray(cookbooks).slice(0, 2);
   }
 
+  const typeOfCard = props.smaller ? "card__selection-theme" : "card";
+
   return (
     <Fragment>
       <div className="container">
@@ -34,7 +36,13 @@ function CookbookList(props) {
             className="links"
             end
           >
-            <CookbookCard key={cookbook.id} {...cookbook} />
+            <CookbookCard
+              key={cookbook.id}
+              name={cookbook.name}
+              imageUrl={cookbook.imageUrl}
+              description={cookbook.description}
+              card={typeOfCard}
+            />
           </NavLink>
         ))}
       </div>

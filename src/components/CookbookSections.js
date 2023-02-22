@@ -1,24 +1,58 @@
 import "./CookbookSections.css";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCoffee,
+  faBowlFood,
+  faPizzaSlice,
+  faBurger,
+  faPepperHot,
+} from "@fortawesome/free-solid-svg-icons";
 
 const CookbookSection = () => {
   return (
     <div className="search-cookbooks">
-      <div className="theme-icons">
-        <div>
-          <i class="fa-regular fa-bowl-chopsticks-noodles"></i>
+      <div className="cookbook-theme">
+        <div className="theme-icons">
+          <p>
+            <FontAwesomeIcon
+              icon={faBowlFood}
+              className="noodles"
+            ></FontAwesomeIcon>
+          </p>
           <span>Asian Food</span>
         </div>
-        <div>
-          <i class="fa-sharp fa-regular fa-taco"></i>
+      </div>
+      <div className="cookbook-theme">
+        <div className="theme-icons">
+          <p>
+            <FontAwesomeIcon
+              icon={faPepperHot}
+              className="noodles"
+            ></FontAwesomeIcon>
+          </p>
           <span>Mexican Food</span>
         </div>
-        <div>
-          <i class="fa-solid fa-burger-fries"></i>
+      </div>
+      <div className="cookbook-theme">
+        <div className="theme-icons">
+          <p>
+            <FontAwesomeIcon
+              icon={faBurger}
+              className="noodles"
+            ></FontAwesomeIcon>
+          </p>
           <span>Fast Food</span>
         </div>
-        <div>
-          <i class="fa-light fa-pizza-slice"></i>
+      </div>
+      <div className="cookbook-theme">
+        <div className="theme-icons">
+          <p>
+            <FontAwesomeIcon
+              icon={faPizzaSlice}
+              className="noodles"
+            ></FontAwesomeIcon>
+          </p>
           <span>Pizza</span>
         </div>
       </div>
