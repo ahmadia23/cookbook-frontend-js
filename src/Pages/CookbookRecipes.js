@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  NavLink,
-  useLoaderData,
-  json,
-  useParams,
-  useRouteLoaderData,
-} from "react-router-dom";
+import { NavLink, useLoaderData, json, useParams } from "react-router-dom";
 import classes from "../UI/link.module.css";
-import RecipeCard from "../components/RecipeCard";
+import RecipeCard from "../components/recipes/RecipeCard";
 import Button from "../UI/Button";
 import { getAuthToken } from "../util/Authentification";
 

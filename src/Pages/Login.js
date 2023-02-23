@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, redirect } from "react-router-dom";
-import "../components/RecipeForm.css";
+import "./Login.css";
 import UseInput from "../hooks/use-input";
 
 const Login = () => {
@@ -59,39 +59,50 @@ const Login = () => {
 
   const emailClasses = emailHasError
     ? "errorInput cookbook-form-input"
-    : "cookbook-form-input";
+    : "cookbook-form-input ic1";
 
   const passwordClasses = passwordHasError
     ? "errorInput cookbook-form-input"
-    : "cookbook-form-input";
+    : "cookbook-form-input ic1";
 
   return (
-    <Form method="POST" className="cookbook-form">
-      {emailHasError && errorMailMessage}
-      {passwordHasError && errorPasswordMessage}
-      <label>Email</label>
-      <input
-        type="text"
-        name="email"
-        className={emailClasses}
-        onChange={emailValueHandler}
-        onBlur={emailBlurHandler}
-        value={emailValue}
-      ></input>
-      <br></br>
-      <label>Password</label>
-      <input
-        type="text"
-        name="password"
-        className={passwordClasses}
-        onChange={passwordValueHandler}
-        onBlur={passwordBlurHandler}
-        value={passwordValue}
-      ></input>
-      <button type="submit" className="cookbook-form-submit">
-        Sign in
-      </button>
-    </Form>
+    <div className="form-container">
+      <Form method="POST" className="login-form">
+        {emailHasError && errorMailMessage}
+        {passwordHasError && errorPasswordMessage}
+        <div class="title">Welcome</div>
+        <div class="subtitle">Let's create your account!</div>
+        <div className="input-container ic1">
+          <input
+            type="text"
+            name="email"
+            className="input"
+            placeholder="Enter a valid email..."
+            onChange={emailValueHandler}
+            onBlur={emailBlurHandler}
+            value={emailValue}
+          ></input>
+          <div class="cut"></div>
+          <label className="placeholder">Email</label>
+        </div>
+        <div className="input-container ic2">
+          <input
+            type="text"
+            name="password"
+            className="input"
+            placeholder="Enter your password..."
+            onChange={passwordValueHandler}
+            onBlur={passwordBlurHandler}
+            value={passwordValue}
+          ></input>
+          <div class="cut cut-short"></div>
+          <label className="placeholder">Password</label>
+        </div>
+        <button type="submit" className="submit">
+          Sign in
+        </button>
+      </Form>
+    </div>
   );
 };
 

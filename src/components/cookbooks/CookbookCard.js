@@ -9,9 +9,6 @@ const CookbookCard = (props) => {
         <figcaption className="card__caption">
           <h2 class="card__title">{props.name}</h2>
           <p class="card__snippet">{props.description}</p>
-          <a href="" class="card__button">
-            Read more
-          </a>
         </figcaption>
       </figure>
     </div>

@@ -1,18 +1,16 @@
 // import classes from "./Home.module.css";
 import React from "react";
 import { Fragment } from "react";
-import { useActionData, useNavigate, useRouteLoaderData } from "react-router";
+import { useActionData, useNavigate } from "react-router";
 import Banner from "../components/Banner";
 import homePng from "../images/home-sweet-recipe.png";
 import websitePng from "../images/website-idea.png";
 import PromessCard from "../components/Home/PromessCard";
-import "../UI/Home.css";
+import "./Home.css";
 import "../components/Home/PromessCard.css";
 import RecipeCarousel from "../components/Home/RecipeCarousel";
-import { useSubmit } from "react-router-dom";
 
 const Home = () => {
-  const token = useRouteLoaderData("tokenLoader");
   const message = useActionData();
   const navigate = useNavigate();
 
@@ -39,7 +37,7 @@ const Home = () => {
             favorite dishes, and share your culinary creations with friends and
             family.
           </p>
-          <img src={websitePng}></img>
+          <img src={websitePng} alt="cooking website"></img>
         </div>
         <p className="home-intro reveal">
           Join our community of passionate cooks and start creating your own

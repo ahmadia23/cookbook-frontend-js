@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import React from "react";
 import classes from "./MainNavigation.module.css";
 import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
-import "../UI/Home.css";
+import "../Pages/Home.css";
 import logoHome from "../images/logoSweet.png";
 
 const MainNavigation = (props) => {
@@ -12,7 +12,7 @@ const MainNavigation = (props) => {
     <Fragment>
       <header className={classes.header}>
         <NavLink to="/" className={"logo"}>
-          <img className={"logo-home"} src={logoHome}></img>
+          <img className={"logo-home"} alt="logo" src={logoHome}></img>
         </NavLink>
         <ul className={classes.list}>
           {token ? (

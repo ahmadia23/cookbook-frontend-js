@@ -1,22 +1,27 @@
 import { json, Outlet, useRouteLoaderData } from "react-router";
-import CookbookList from "../components/CookbookList";
+import CookbookList from "../components/cookbooks/CookbookList";
 import Button from "../UI/Button";
 import React, { Fragment } from "react";
 import "./Cookbooks.css";
-import CookbookSection from "../components/CookbookSections";
-import "../components/CookbookCard.css";
+import CookbookSection from "../components/cookbooks/CookbookSections";
+import "../components/cookbooks/CookbookCard.css";
 
 const Cookbooks = () => {
   const token = useRouteLoaderData("tokenLoader");
+
   return (
     <Fragment>
       <h2 className="intro-text">
         Welcome to our Cookbooks page, where you can explore a wide range of
-        recipes and cooking ideas. Our Cookbooks are created by passionate
-        foodies who love to experiment with new flavors and techniques.
+        recipes and cooking ideas.
       </h2>
+
       <div className="cookbooks-showcase">
         <h2>Selection of the day</h2>
+        <p className="intro-text">
+          Our Cookbooks are created by passionate foodies who love to experiment
+          with new flavors and techniques.
+        </p>
         <CookbookList random={true} smaller={false}></CookbookList>
       </div>
       <section className="cookbooks">
@@ -32,12 +37,16 @@ const Cookbooks = () => {
           <CookbookSection></CookbookSection>
           <CookbookList smaller={true}></CookbookList>
         </div>
-        <p>
+        <p className="intro-text ">
           So take your time, browse through our selection, and get inspired to
-          create your own culinary masterpiece. Happy cooking!
+          create your own culinary masterpiece. Haxppy cooking!
         </p>
+        <Button
+          to={token ? "/new" : "/login"}
+          className="button-create"
+          linkName="Create a Cookbook"
+        ></Button>
       </section>
-      <Button to={token ? "/new" : "/login"} linkName="New Cookbook" />
       <Outlet></Outlet>
     </Fragment>
   );

@@ -1,4 +1,4 @@
-import MainNavigation from "../components/MainNavigation";
+import MainNavigation from "../layouts/MainNavigation";
 import { Fragment, useEffect } from "react";
 import { Outlet, useLoaderData, useNavigation } from "react-router";
 import React from "react";

@@ -1,4 +1,4 @@
-import CookbookForm from "../components/CookbookForm";
+import CookbookForm from "../components/forms/CookbookForm";
 import React from "react";
 import { json, redirect } from "react-router";
 import { getAuthToken } from "../util/Authentification";

@@ -1,9 +1,8 @@
-import CookbookRecipes from "./CookbookRecipes";
 import React from "react";
 import { getAuthToken } from "../util/Authentification";
 import { json, redirect, useLoaderData } from "react-router";
-import RecipeCard from "../components/RecipeCard";
-import "../UI/Home.css";
+import RecipeCard from "../components/recipes/RecipeCard";
+import "../Pages/Home.css";
 
 const SavingRecipes = () => {
   const token = getAuthToken();

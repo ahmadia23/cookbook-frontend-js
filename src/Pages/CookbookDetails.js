@@ -1,6 +1,6 @@
 import { json, Outlet, redirect, useParams } from "react-router";
 import { useLoaderData } from "react-router";
-import "../components/CookbookCard.css";
+import "../components/cookbooks/CookbookCard.css";
 import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";

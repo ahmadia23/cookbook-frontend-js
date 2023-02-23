@@ -7,7 +7,7 @@ import {
   useParams,
 } from "react-router";
 import { useLoaderData } from "react-router";
-import "../components/RecipeCard.css";
+import "../components/recipes/RecipeCard.css";
 import { Fragment, useEffect } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
@@ -19,11 +19,8 @@ const RecipeDetails = () => {
   const recipe = useLoaderData().recipe;
   const errorMessage = useActionData();
   const navigate = useNavigate();
-  let error;
-
   useEffect(() => {
     if (errorMessage) {
-      error = errorMessage.message;
       navigate(".");
     }
   }, errorMessage);

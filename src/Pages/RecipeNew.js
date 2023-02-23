@@ -1,4 +1,4 @@
-import RecipeForm from "../components/RecipeForm";
+import RecipeForm from "../components/forms/RecipeForm";
 import React from "react";
 import { useLoaderData, redirect, json } from "react-router";
 import { getAuthToken } from "../util/Authentification";

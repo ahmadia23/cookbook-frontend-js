@@ -7,11 +7,18 @@
 
 .cookbook-theme {
   color: var(--color-primary-400);
-  background-color: black;
+  background-color: #1b1d2e;
   padding: 2rem;
   width: 10rem;
   height: 12rem;
   margin: auto 1em;
+  border-radius: 1em;
+  transition: 0.5s ease;
+}
+
+.cookbook-theme:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .noodles {

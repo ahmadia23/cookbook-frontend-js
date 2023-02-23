@@ -2,7 +2,7 @@
 //récupérer le message de l'erreur
 // afficher l'erreur au dessus du forme en rouge
 
-import "../components/RecipeForm.css";
+import "../components/forms/RecipeForm.css";
 import React from "react";
 import { Form, redirect, useActionData } from "react-router-dom";
 import UseInput from "../hooks/use-input";
