@@ -8,6 +8,8 @@ import { Form, redirect, useActionData } from "react-router-dom";
 import UseInput from "../hooks/use-input";
 import "../UI/errors.css";
 import { useSelector } from "react-redux";
+import Button from "../UI/Button";
+import "./Login.css";
 
 const Signup = () => {
   let errorMailMessage = "";
@@ -64,12 +66,12 @@ const Signup = () => {
   } = UseInput(validatePassword);
 
   const emailClasses = emailHasError
-    ? "errorInput cookbook-form-input"
-    : "cookbook-form-input";
+    ? "error-field input-container ic1"
+    : "input-container ic1";
   const passwordClasses =
     passwordValue !== SndPasswordValue
-      ? "errorInput cookbook-form-input"
-      : "cookbook-form-input";
+      ? "error-field input-container ic2"
+      : "input-container ic2";
 
   let notMatching =
     passwordValue !== SndPasswordValue ? (
@@ -83,49 +85,75 @@ const Signup = () => {
   // resetPassword();
 
   return (
-    <Form
-      method="POST"
-      action="/signup"
-      className="cookbook-form"
-      // action={isLogged }
-      // onSubmit={useActionData(action)}
-      // onSubmit={submitHandler}
-    >
-      <p className="error-message">{data && data.errorMessage}</p>
-      {notMatching}
-      {emailHasError && errorMailMessage}
-      {passwordHasError && errorPasswordMessage}
-      <label>Email</label>
-      <input
-        type="text"
-        name="email"
-        className={emailClasses}
-        onChange={emailValueHandler}
-        onBlur={emailBlurHandler}
-        value={emailValue}
-      ></input>
-      <br></br>
-      <label>Password</label>
-      <input
-        type="text"
-        name="password"
-        className={passwordClasses}
-        onChange={passwordValueHandler}
-        onBlur={passwordBlurHandler}
-        value={passwordValue}
-      ></input>
-      <label>Confirm password</label>
-      <input
-        type="text"
-        name="SndPassword"
-        className={passwordClasses}
-        onChange={SndPasswordValueHandler}
-        value={SndPasswordValue}
-      ></input>
-      <button type="submit" className="cookbook-form-submit">
-        Sign up
-      </button>
-    </Form>
+    <div className="form-container">
+      <Form
+        method="POST"
+        action="/signup"
+        className="login-form"
+        // action={isLogged }
+        // onSubmit={useActionData(action)}
+        // onSubmit={submitHandler}
+      >
+        <p className="error-message">{data && data.errorMessage}</p>
+        {notMatching}
+        {emailHasError && errorMailMessage}
+        {passwordHasError && errorPasswordMessage}
+        <div class="title">Welcome</div>
+        <div class="subtitle">Let's create your account!</div>
+        <div className={emailClasses}>
+          <input
+            type="text"
+            name="email"
+            className="input"
+            placeholder="Enter a valid email..."
+            onChange={emailValueHandler}
+            onBlur={emailBlurHandler}
+            value={emailValue}
+          ></input>
+          <div class="cut"></div>
+          <label className="placeholder">Email</label>
+        </div>
+        <div className={passwordClasses}>
+          <input
+            type="text"
+            name="password"
+            className="input"
+            placeholder="Enter your password..."
+            onChange={passwordValueHandler}
+            onBlur={passwordBlurHandler}
+            value={passwordValue}
+          ></input>
+          <div class="cut cut-short"></div>
+          <label className="placeholder">Password</label>
+        </div>
+        <div className={passwordClasses}>
+          <input
+            type="text"
+            name="SndPassword"
+            className="input"
+            placeholder="Confirm your password..."
+            onChange={SndPasswordValueHandler}
+            value={SndPasswordValue}
+          ></input>
+          <div class="cut cut-short"></div>
+          <label className="placeholder">Confirm password</label>
+        </div>
+        <button
+          type="submit"
+          className={"ok" ? "submit" : "inactive :disabled"}
+        >
+          Sign up
+        </button>
+        <div className="other-actions">
+          <p>Already registered ? </p>
+          <Button
+            to="/login"
+            linkName="Sign in"
+            className={"link-form "}
+          ></Button>
+        </div>
+      </Form>
+    </div>
   );
 };
 

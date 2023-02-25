@@ -35,7 +35,7 @@ const Cookbooks = () => {
         <div className="cookbook-section">
           <h2 className="cookbook-section-title">Theme Inspiration</h2>
           <CookbookSection></CookbookSection>
-          <CookbookList smaller={true}></CookbookList>
+          <CookbookList random={true} smaller={true}></CookbookList>
         </div>
         <p className="intro-text ">
           So take your time, browse through our selection, and get inspired to

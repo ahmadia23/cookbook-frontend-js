@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, redirect } from "react-router-dom";
 import "./Login.css";
 import UseInput from "../hooks/use-input";
+import Button from "../UI/Button";
 
 const Login = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
+  const [isEvaluating, setEvaluating] = useState(false);
+  const [buttonAvailable, setButton] = useState(true);
 
   const validateEmail = (value) => {
     if (value.trim(" ").length === 0) {
@@ -43,6 +46,12 @@ const Login = () => {
     }
   };
 
+  console.log(buttonAvailable);
+  if (buttonAvailable && emailHasError) {
+    console.log("yo");
+    setButton(false);
+  }
+
   const {
     inputValue: emailValue,
     hasError: emailHasError,
@@ -58,12 +67,12 @@ const Login = () => {
   } = UseInput(validatePassword);
 
   const emailClasses = emailHasError
-    ? "errorInput cookbook-form-input"
-    : "cookbook-form-input ic1";
+    ? "error-field input-container ic1"
+    : "input-container ic1";
 
   const passwordClasses = passwordHasError
-    ? "errorInput cookbook-form-input"
-    : "cookbook-form-input ic1";
+    ? "error-field input-container ic2"
+    : "input-container ic2";
 
   return (
     <div className="form-container">
@@ -71,8 +80,8 @@ const Login = () => {
         {emailHasError && errorMailMessage}
         {passwordHasError && errorPasswordMessage}
         <div class="title">Welcome</div>
-        <div class="subtitle">Let's create your account!</div>
-        <div className="input-container ic1">
+        <div class="subtitle">Link to your account!</div>
+        <div className={emailClasses}>
           <input
             type="text"
             name="email"
@@ -85,7 +94,7 @@ const Login = () => {
           <div class="cut"></div>
           <label className="placeholder">Email</label>
         </div>
-        <div className="input-container ic2">
+        <div className={passwordClasses}>
           <input
             type="text"
             name="password"
@@ -98,9 +107,20 @@ const Login = () => {
           <div class="cut cut-short"></div>
           <label className="placeholder">Password</label>
         </div>
-        <button type="submit" className="submit">
+        <button
+          type="submit"
+          className={buttonAvailable ? "submit" : "inactive :disabled"}
+        >
           Sign in
         </button>
+        <div className="other-actions">
+          <p>Don't have an account yet ? </p>
+          <Button
+            to="/signup"
+            linkName="Sign up"
+            className={"link-form "}
+          ></Button>
+        </div>
       </Form>
     </div>
   );

@@ -1,26 +1,30 @@
 .form-container {
   align-items: center;
-  background-color: #000;
   display: flex;
   justify-content: center;
   height: 100vh;
 }
 
 .login-form {
-  background-color: #15172b;
+  background-color: #0a0f12;
   border-radius: 20px;
   box-sizing: border-box;
   height: 500px;
-  padding: 20px;
-  width: 320px;
+  padding: 2rem;
+  width: 30em;
 }
 
 .title {
   color: #eee;
-  font-family: sans-serif;
   font-size: 36px;
   font-weight: 600;
   margin-top: 30px;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  margin-top: 8px;
 }
 
 .input-container {
@@ -38,12 +42,11 @@
 }
 
 .input {
-  background-color: #303245;
+  background-color: var(--color-gray-400);
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
   color: #eee;
-  font-size: 18px;
   height: 100%;
   outline: 0;
   padding: 4px 20px 0;
@@ -51,7 +54,7 @@
 }
 
 .cut {
-  background-color: #15172b;
+  background-color: black;
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -59,11 +62,11 @@
   top: -20px;
   transform: translateY(0);
   transition: transform 200ms;
-  width: 76px;
+  width: 50px;
 }
 
 .cut-short {
-  width: 50px;
+  width: 70px;
 }
 
 .input:focus ~ .cut,
@@ -73,18 +76,19 @@
 
 .placeholder {
   color: #65657b;
-  font-family: sans-serif;
   left: 20px;
   line-height: 14px;
   pointer-events: none;
   position: absolute;
   transform-origin: 0 50%;
   transition: transform 200ms, color 200ms;
-  top: 20px;
+  top: 18px;
+  opacity: 0;
 }
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
+  opacity: 1;
   transform: translateY(-30px) translateX(10px) scale(0.75);
 }
 
@@ -97,7 +101,7 @@
 }
 
 .submit {
-  background-color: #08d;
+  background-color: var(--color-primary-800);
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -112,5 +116,42 @@
 }
 
 .submit:active {
-  background-color: #06b;
+  background-color: var(--color-primary-800);
+}
+
+.submit:hover {
+  opacity: 1;
+  background-color: var(--color-primary-400);
+}
+
+.other-actions {
+  color: white;
+  display: flex;
+}
+
+.link-form {
+  color: white;
+  text-decoration: none;
+  align-self: center;
+  margin: auto 3px;
+}
+
+.link-form:hover {
+  text-decoration: underline;
+}
+
+.inactive {
+  background-color: gray;
+  opacity: 0.7;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 100%;
 }

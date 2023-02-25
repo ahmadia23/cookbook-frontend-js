@@ -1,9 +1,10 @@
 .errorInput {
-  background-color:lightpink;
+  background-color: lightpink;
   border: solid;
   border-color: red;
 }
 
 .error-message {
   color: red;
+  text-align: center;
 }

@@ -5,8 +5,7 @@ import { getAuthToken } from "../util/Authentification";
 
 const CookbookNew = () => {
   return (
-    <div>
-      <h1>Hello from the new cookbook </h1>
+    <div className="container">
       <CookbookForm></CookbookForm>
     </div>
   );
@@ -24,6 +23,7 @@ export const action = async ({ request, params }) => {
     theme: data.get("theme"),
     image: data.get("image"),
   };
+
   console.log(cookbookData);
   const response = await fetch("http://localhost:8080/new-cookbook", {
     method: "POST",
