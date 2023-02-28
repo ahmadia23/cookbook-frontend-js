@@ -125,3 +125,30 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+.cookbook-searchbar {
+  width: 80%;
+  margin: auto;
+}
+
+.border-section-full {
+  padding-bottom: 2em;
+  border-bottom: solid;
+  border-color: var(--color-primary-400);
+}
+.border-section {
+  padding-bottom: 2em;
+  border-bottom: solid;
+  border-color: var(--color-primary-400);
+  margin: auto;
+}
+
+.intro-text {
+  margin: 1rem 4em;
+  margin-top: 2rem !important;
+  text-align: center;
+  font-weight: bold;
+  line-height: 3rem;
+  padding: 2em;
+  font-size: 1.2rem;
+}

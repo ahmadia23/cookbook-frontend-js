@@ -1,6 +1,7 @@
 import { json, Outlet, redirect, useParams } from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/cookbooks/CookbookCard.css";
+import "./Cookbooks.css";
 import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
@@ -28,24 +29,28 @@ const CookbookDetails = () => {
     <Fragment>
       <div className="cookbook-page">
         <img
-          src={cookbook.image}
+          src={cookbook.imageUrl}
           alt={cookbook.name}
           className="cookbook-page__image"
         />
         <div className="cookbook-page__content">
-          <h3 className="cookbook-page__title">{cookbook.name}</h3>
-          <p className="cookbook-page__description">{cookbook.description}</p>
-          <span className="cookbook-page__theme">{cookbook.theme}</span>
+          <h3 className="cookbook-page__title ">{cookbook.name}</h3>
+          <p className="cookbook-page__theme">{cookbook.theme}</p>
+          <p className="cookbook-page__description intro-text">
+            {cookbook.description}
+          </p>
         </div>
       </div>
+      <Outlet />
       {adminMode ? (
-        <Form onSubmit={removeCookbookHandler}>
-          <button>Remove this cookbook</button>
+        <Form onSubmit={removeCookbookHandler} className={"remove__link"}>
+          <button className="cookbook-remove__link">
+            Remove this cookbook
+          </button>
         </Form>
       ) : (
         ""
       )}
-      <Outlet />
     </Fragment>
   );
 };

@@ -55,15 +55,12 @@ const router = createBrowserRouter([
             path: ":cookbookId",
             children: [
               {
-                index: true,
+                path: "",
                 loader: loadCookbookDetails,
                 element: <CookbookDetails />,
-              },
-              {
-                path: "recipes",
                 children: [
                   {
-                    index: true,
+                    path: "recipes",
                     loader: loadCookbookRecipes,
                     element: <CookbookRecipes />,
                   },

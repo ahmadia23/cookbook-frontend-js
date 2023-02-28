@@ -7,7 +7,7 @@ import Button from "../UI/Button";
 const Login = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
-  const [isEvaluating, setEvaluating] = useState(false);
+
   const [buttonAvailable, setButton] = useState(true);
 
   const validateEmail = (value) => {
@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   console.log(buttonAvailable);
-  if (buttonAvailable && emailHasError) {
+  if (buttonAvailable) {
     console.log("yo");
     setButton(false);
   }
@@ -107,10 +107,7 @@ const Login = () => {
           <div class="cut cut-short"></div>
           <label className="placeholder">Password</label>
         </div>
-        <button
-          type="submit"
-          className={buttonAvailable ? "submit" : "inactive :disabled"}
-        >
+        <button type="submit" className="submit">
           Sign in
         </button>
         <div className="other-actions">

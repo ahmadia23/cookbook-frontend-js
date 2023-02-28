@@ -1,10 +1,20 @@
 import RecipeForm from "../components/forms/RecipeForm";
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { useLoaderData, redirect, json } from "react-router";
 import { getAuthToken } from "../util/Authentification";
+import "./RecipeNew.css";
+import RecipeName from "../components/forms/RecipeName";
+import { Form } from "react-router-dom";
+import RecipeDescription from "../components/forms/RecipeDescription";
+import RecipeTime from "../components/forms/RecipeTheme";
+import RecipeIngredients from "../components/forms/RecipeIngredients";
 
 const RecipeNew = ({ editMode }) => {
   const adminMode = useLoaderData().adminMode;
+  const [page, setPage] = useState(0);
+  const [recipeName, setRecipeName] = useState();
+  const [recipeDetail, setRecipeDetail] = useState();
+
   if (!adminMode && editMode) {
     return redirect("/");
   }
@@ -20,21 +30,55 @@ const RecipeNew = ({ editMode }) => {
     };
   }
 
+  // const nameTitle = (
+  //   <h1 className="recipe-form__title">What is the Name of your recipe ? </h1>
+  // );
+  // const descriptionTitle = (
+  //   <h1 className="recipe-form__title">Describe your recipe ? </h1>
+  // );
+
+  const componentList = [
+    <RecipeName page={page} setPage={setPage} />,
+    <RecipeDescription page={page} setPage={setPage} />,
+    <RecipeTime page={page} setPage={setPage} />,
+    <RecipeIngredients page={page} setPage={setPage} />,
+  ];
+
   return (
-    <div>
-      <h1>Hello from the new recipe</h1>
-      {adminMode ? (
-        <RecipeForm
-          name={recipeData.name}
-          description={recipeData.description}
-          time={recipeData.time}
-          imageUrl={recipeData.imageUrl}
-          editMode={editMode}
-        ></RecipeForm>
-      ) : (
-        <RecipeForm />
-      )}
-    </div>
+    <Fragment>
+      <Form className="recipe-form container">
+        <div className="progress-bar">
+          <div
+            style={{
+              width:
+                page === 0
+                  ? "25%"
+                  : page === 1
+                  ? "50%"
+                  : page === 2
+                  ? "75%"
+                  : "100%",
+            }}
+          ></div>
+        </div>
+        <div>{componentList[page]}</div>
+        {`page is now: ${page}`}
+
+        {/* <div className="container">
+        {adminMode ? (
+          <RecipeForm
+            name={recipeData.name}
+            description={recipeData.description}
+            time={recipeData.time}
+            imageUrl={recipeData.imageUrl}
+            editMode={editMode}
+          ></RecipeForm>
+        ) : (
+          <RecipeForm />
+        )}
+      </div> */}
+      </Form>
+    </Fragment>
   );
 };
 

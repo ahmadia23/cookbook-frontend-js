@@ -77,6 +77,7 @@ const MainNavigation = (props) => {
           )}
         </ul>
       </header>
+      <div className="border-section-full"></div>
     </Fragment>
   );
 };

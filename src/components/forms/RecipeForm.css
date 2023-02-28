@@ -1,27 +1,95 @@
-.cookbook-form {
-  padding: 16px;
-  border-radius: 8px;
-  color: var( --text-color);
+.recipe-form {
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.cookbook-form-input {
-  background-color: var(--background-color);
-  color: var( --text-color);
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 8px;
+.recipe-form__input {
+  flex-direction: column;
+  color: white;
+  display: flex;
+}
+
+.recipe-form__input input {
+  color: white;
+  height: 6vh;
   width: 100%;
+  font-size: 1.3em;
+  background-color: var(--color-gray-400);
+  border-radius: 0.2em;
+  border-color: black;
+  text-align: center;
+}
+.recipe-form__input textarea {
+  color: white;
+  height: 6vh;
+  width: 100%;
+  font-size: 0.8em;
+  background-color: var(--color-gray-400);
+  border-radius: 0.2em;
+  border-color: black;
+  text-align: center;
 }
 
-.cookbook-form-submit {
-  background-color: var(--primary-color);
-  color: var( --text-color);
-  border-radius: 8px;
-  padding: 10px;
-  margin: 1rem auto;
+.recipe-form__input input::placeholder {
+  opacity: 0.6;
+  color: white;
+  font-size: 1.1rem;
+  padding: 2em auto;
 }
 
-.cookbook-form-submit:hover {
-  color: var( --text-color);
+.recipe-actions {
+  width: 100%;
+  margin-bottom: 6em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-form__plus {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 1em;
+  margin-top: 0.4em;
+  align-self: center;
+  background-color: var(--color-primary-800);
+  border-radius: 4px;
+  border-color: transparent;
+  padding: 0.4rem 4rem;
+  width: 48%;
+}
+
+.space {
+  margin-bottom: 6em;
+}
+.recipe-form__minus {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 1em;
+  margin-top: 0.4em;
+  align-self: center;
+  background-color: var(--color-gray-400);
+  border-radius: 4px;
+  border-color: transparent;
+  padding: 0.4rem 4rem;
+  width: 48%;
+}
+
+.recipe-form__plus:hover {
+  background-color: var(--color-primary-400);
+  cursor: pointer;
+}
+.recipe-form__minus:hover {
+  cursor: pointer;
   opacity: 0.7;
+}
+
+.recipe-form__title {
+  text-align: center;
+  margin: 2em auto;
+  margin-top: 3em;
+  /* color: var(--color-primary-400); */
+  font-weight: bold;
 }

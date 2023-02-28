@@ -4,6 +4,7 @@ import classes from "../UI/link.module.css";
 import RecipeCard from "../components/recipes/RecipeCard";
 import Button from "../UI/Button";
 import { getAuthToken } from "../util/Authentification";
+import "./Cookbooks.css";
 
 const CookbookRecipes = () => {
   const recipes = useLoaderData().recipes;
@@ -24,13 +25,13 @@ const CookbookRecipes = () => {
   });
 
   return (
-    <div>
-      <h1>Look at all this cookbook's recipes</h1>
+    <div className="container">
       {RecipeList}
       {adminMode ? (
         <Button
           to={`/cookbooks/${cookbookId}/new`}
           linkName="Add a new recipe"
+          className="cookbook-recipe__link"
         ></Button>
       ) : (
         ""

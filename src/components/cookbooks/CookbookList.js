@@ -1,7 +1,7 @@
 import CookbookCard from "./CookbookCard";
 import React, { Fragment } from "react";
 import { useLoaderData, useRouteLoaderData } from "react-router";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./CookbookList.css";
 
 function CookbookList(props) {
@@ -30,10 +30,18 @@ function CookbookList(props) {
     <Fragment>
       <div className="container">
         {cookbooks.map((cookbook) => (
-          <NavLink
+          <Link
             key={cookbook.id}
             to={token ? `/cookbooks/${cookbook.id}/recipes` : "/login"}
             className="links"
+            onClick={() => {
+              console.log("you clicked");
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              });
+            }}
             end
           >
             <CookbookCard
@@ -43,7 +51,7 @@ function CookbookList(props) {
               description={cookbook.description}
               card={typeOfCard}
             />
-          </NavLink>
+          </Link>
         ))}
       </div>
     </Fragment>
