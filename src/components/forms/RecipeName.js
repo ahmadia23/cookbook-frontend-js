@@ -1,7 +1,7 @@
 import "./RecipeForm.css";
 import React, { Fragment } from "react";
 
-const RecipeName = ({ page, setPage }) => {
+const RecipeName = ({ page, setPage, formData, setFormData }) => {
   return (
     <Fragment>
       <h1 className="recipe-form__title">Your recipe Name ? </h1>

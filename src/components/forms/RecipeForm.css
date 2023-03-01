@@ -21,6 +21,17 @@
   border-color: black;
   text-align: center;
 }
+
+.recipe-form__input select {
+  color: white;
+  height: 6vh;
+  width: 100%;
+  font-size: 1.1em;
+  background-color: var(--color-gray-400);
+  border-radius: 0.2em;
+  border-color: black;
+  text-align: center;
+}
 .recipe-form__input textarea {
   color: white;
   height: 6vh;

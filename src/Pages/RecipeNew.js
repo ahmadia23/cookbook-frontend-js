@@ -6,14 +6,18 @@ import "./RecipeNew.css";
 import RecipeName from "../components/forms/RecipeName";
 import { Form } from "react-router-dom";
 import RecipeDescription from "../components/forms/RecipeDescription";
-import RecipeTime from "../components/forms/RecipeTheme";
+import RecipeTime from "../components/forms/RecipeTime";
 import RecipeIngredients from "../components/forms/RecipeIngredients";
 
 const RecipeNew = ({ editMode }) => {
   const adminMode = useLoaderData().adminMode;
   const [page, setPage] = useState(0);
-  const [recipeName, setRecipeName] = useState();
-  const [recipeDetail, setRecipeDetail] = useState();
+  const [formData, setFormData] = useState({
+    name: "",
+    detail: "",
+    time: "",
+    ingredients: "",
+  });
 
   if (!adminMode && editMode) {
     return redirect("/");
@@ -38,10 +42,30 @@ const RecipeNew = ({ editMode }) => {
   // );
 
   const componentList = [
-    <RecipeName page={page} setPage={setPage} />,
-    <RecipeDescription page={page} setPage={setPage} />,
-    <RecipeTime page={page} setPage={setPage} />,
-    <RecipeIngredients page={page} setPage={setPage} />,
+    <RecipeName
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <RecipeDescription
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <RecipeTime
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
+    <RecipeIngredients
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
   ];
 
   return (

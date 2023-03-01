@@ -1,18 +1,17 @@
 import "./RecipeForm.css";
 import React, { Fragment } from "react";
 
-const RecipeTime = ({ page, setPage }) => {
+const RecipeTime = ({ page, setPage, formData, setFormData }) => {
   return (
     <Fragment>
       <h1 className="recipe-form__title"> Preparation time</h1>
       <div className="recipe-form__input ">
-        <input name="recipeName" type="text" list="thems"></input>
-        <datalist id="themes">
-          <option>Asian food</option>
-          <option>African food</option>
-          <option>Mexiacn food</option>
-          <option>Audi</option>
-        </datalist>
+        <select name="recipeName" id="times">
+          <option>15 min</option>
+          <option>25 min</option>
+          <option>30 min</option>
+          <option>1+ hours</option>
+        </select>
         <div className="recipe-actions">
           <button
             className={
