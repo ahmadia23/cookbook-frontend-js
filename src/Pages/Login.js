@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, redirect } from "react-router-dom";
 import "./Login.css";
-import UseInput from "../hooks/use-input";
+import { UseInput as UseLogin } from "../hooks/use-input";
 import Button from "../UI/Button";
 
 const Login = () => {
@@ -57,14 +57,14 @@ const Login = () => {
     hasError: emailHasError,
     inputBlurHandler: emailBlurHandler,
     inputValueHandler: emailValueHandler,
-  } = UseInput(validateEmail);
+  } = UseLogin(validateEmail);
 
   const {
     inputValue: passwordValue,
     hasError: passwordHasError,
     inputBlurHandler: passwordBlurHandler,
     inputValueHandler: passwordValueHandler,
-  } = UseInput(validatePassword);
+  } = UseLogin(validatePassword);
 
   const emailClasses = emailHasError
     ? "error-field input-container ic1"

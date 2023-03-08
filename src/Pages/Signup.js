@@ -5,7 +5,7 @@
 import "../components/forms/RecipeForm.css";
 import React from "react";
 import { Form, redirect, useActionData } from "react-router-dom";
-import UseInput from "../hooks/use-input";
+import { UseInput as UseSignup } from "../hooks/use-input";
 import "../UI/errors.css";
 import { useSelector } from "react-redux";
 import Button from "../UI/Button";
@@ -52,18 +52,18 @@ const Signup = () => {
     hasError: emailHasError,
     inputBlurHandler: emailBlurHandler,
     inputValueHandler: emailValueHandler,
-  } = UseInput(validateEmail);
+  } = UseSignup(validateEmail);
   const {
     inputValue: passwordValue,
     hasError: passwordHasError,
     inputBlurHandler: passwordBlurHandler,
     inputValueHandler: passwordValueHandler,
-  } = UseInput(validatePassword);
+  } = UseSignup(validatePassword);
 
   const {
     inputValue: SndPasswordValue,
     inputValueHandler: SndPasswordValueHandler,
-  } = UseInput(validatePassword);
+  } = UseSignup(validatePassword);
 
   const emailClasses = emailHasError
     ? "error-field input-container ic1"

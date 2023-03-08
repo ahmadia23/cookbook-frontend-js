@@ -14,7 +14,7 @@ const RecipeNew = ({ editMode }) => {
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
-    detail: "",
+    description: "",
     time: "",
     ingredients: "",
   });
@@ -110,14 +110,19 @@ export default RecipeNew;
 
 export const sendNewRecipe = async ({ request, params }) => {
   const data = await request.formData();
+  console.log("data", data);
   const cookbookId = params.cookbookId;
   const token = getAuthToken();
   const newRecipe = {
     name: data.get("name"),
     description: data.get("description"),
-    time: data.get("time"),
-    imageUrl: data.get("image"),
+    time: 15,
+    ingredients: data.get("ingredients"),
+    imageUrl:
+      "https://cdn.pixabay.com/photo/2022/06/02/18/22/ramen-7238668_1280.jpg",
   };
+
+  console.log(newRecipe);
   const response = await fetch(
     `http://localhost:8080/cookbooks/${cookbookId}/add-recipe`,
     {

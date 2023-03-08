@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-const UseInput = (validate) => {
+export const UseInput = (validate) => {
   const [enteredValue, setValue] = useState("");
   const [valueIsTouched, setValueIsTouched] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const inputValueHandler = (event) => {
+    console.log(event.target.value);
     setValue(event.target.value);
   };
 
@@ -30,7 +31,7 @@ const UseInput = (validate) => {
     inputValue: enteredValue,
     hasError,
     inputIsValid,
-    valueIsTouched: valueIsTouched,
+    valueIsTouched,
     inputBlurHandler: inputBlurHandler,
     inputValueHandler: inputValueHandler,
     errorMessageHandler,
@@ -38,5 +39,3 @@ const UseInput = (validate) => {
     reset: reset,
   };
 };
-
-export default UseInput;
