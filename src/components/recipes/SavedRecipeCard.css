@@ -1,0 +1,42 @@
+.saved-recipe {
+  margin-inline: 2rem;
+  background-color: transparent;
+  font-weight: bold;
+  margin-top: 1em;
+  border-radius: 1em;
+  position: relative;
+}
+.saved-recipe h2 {
+  opacity: 1 !important;
+  font-weight: bold;
+}
+
+.saved-recipe .remove-button {
+  background-color: black;
+  color: white;
+  font-size: larger;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  top: 4px;
+  right: 68%;
+  transition: 0.2s ease;
+}
+
+.remove-button:hover {
+  transform: scale(1.2, 1.2);
+  cursor: pointer;
+}
+
+.recipe__saved-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.favorite-recipes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}

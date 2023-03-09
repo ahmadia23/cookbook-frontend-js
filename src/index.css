@@ -30,7 +30,6 @@ body {
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: var(--primary-color);
   color: rgba(255, 255, 255, 0.87);
   background-color: #0d0d0d;
 
@@ -59,6 +58,10 @@ body {
   --color-primary-700: #fbc14d;
   --color-primary-800: #fab833;
   --color-primary-900: #f6ad1b;
+}
+
+textarea {
+  -webkit-font-smoothing: antialiased;
 }
 
 .user-message {
@@ -141,6 +144,13 @@ body {
   border-bottom: solid;
   border-color: var(--color-primary-400);
   margin: auto;
+}
+
+.border__section-top {
+  padding-top: 2em;
+  border-top: solid;
+  border-color: var(--color-primary-400);
+  margin: 10%;
 }
 
 .intro-text {

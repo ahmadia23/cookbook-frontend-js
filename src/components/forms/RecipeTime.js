@@ -1,21 +1,30 @@
 import "./RecipeForm.css";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { UseInput as UseTime } from "../../hooks/use-input";
 
 const RecipeTime = ({ page, setPage, formData, setFormData }) => {
   const validateTime = () => {};
+
   const { inputValue: timeValue, inputValueHandler: timeValueHandler } =
     UseTime(validateTime);
 
+  useEffect(() => {
+    console.log(timeValue);
+  }, [timeValue]);
   return (
     <Fragment>
       <h1 className="recipe-form__title"> Preparation time</h1>
       <div className="recipe-form__input ">
-        <select name="recipeName" id="times" onChange={timeValueHandler}>
-          <option>15 min</option>
-          <option>25 min</option>
-          <option>30 min</option>
-          <option>1+ hours</option>
+        <select
+          name="time"
+          id="times"
+          onChange={timeValueHandler}
+          value={timeValue}
+        >
+          <option value="15">15 min</option>
+          <option value="25">25 min</option>
+          <option value="30">30 min</option>
+          <option value="1+">1+ hours</option>
         </select>
         <div className="recipe-actions">
           <button
@@ -23,8 +32,12 @@ const RecipeTime = ({ page, setPage, formData, setFormData }) => {
               page === 0 ? "recipe-form__plus space" : "recipe-form__plus"
             }
             onClick={() => {
-              setFormData({ ...formData, time: timeValue });
+              if (!timeValue) {
+                setPage(page + 1);
+                return setFormData({ ...formData, time: "15" });
+              }
               setPage(page + 1);
+              setFormData({ ...formData, time: timeValue });
             }}
           >
             Next

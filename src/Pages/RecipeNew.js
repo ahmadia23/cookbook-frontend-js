@@ -1,4 +1,3 @@
-import RecipeForm from "../components/forms/RecipeForm";
 import React, { Fragment, useState } from "react";
 import { useLoaderData, redirect, json } from "react-router";
 import { getAuthToken } from "../util/Authentification";
@@ -8,6 +7,7 @@ import { Form } from "react-router-dom";
 import RecipeDescription from "../components/forms/RecipeDescription";
 import RecipeTime from "../components/forms/RecipeTime";
 import RecipeIngredients from "../components/forms/RecipeIngredients";
+import RecipeImage from "../components/forms/RecipeImage";
 
 const RecipeNew = ({ editMode }) => {
   const adminMode = useLoaderData().adminMode;
@@ -15,31 +15,15 @@ const RecipeNew = ({ editMode }) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
+    steps: "",
     time: "",
     ingredients: "",
+    imageUrl: "",
   });
 
   if (!adminMode && editMode) {
     return redirect("/");
   }
-
-  const recipe = useLoaderData().recipe;
-  let recipeData;
-  if (recipe) {
-    recipeData = {
-      name: recipe.name,
-      description: recipe.description,
-      time: recipe.time,
-      imageUrl: recipe.imageUrl,
-    };
-  }
-
-  // const nameTitle = (
-  //   <h1 className="recipe-form__title">What is the Name of your recipe ? </h1>
-  // );
-  // const descriptionTitle = (
-  //   <h1 className="recipe-form__title">Describe your recipe ? </h1>
-  // );
 
   const componentList = [
     <RecipeName
@@ -60,6 +44,12 @@ const RecipeNew = ({ editMode }) => {
       formData={formData}
       setFormData={setFormData}
     />,
+    <RecipeImage
+      page={page}
+      setPage={setPage}
+      formData={formData}
+      setFormData={setFormData}
+    />,
     <RecipeIngredients
       page={page}
       setPage={setPage}
@@ -70,37 +60,25 @@ const RecipeNew = ({ editMode }) => {
 
   return (
     <Fragment>
-      <Form className="recipe-form container">
+      <Form className="recipe-form">
         <div className="progress-bar">
           <div
             style={{
               width:
                 page === 0
-                  ? "25%"
+                  ? "20%"
                   : page === 1
-                  ? "50%"
+                  ? "40%"
                   : page === 2
-                  ? "75%"
+                  ? "60%"
+                  : page === 3
+                  ? "80%"
                   : "100%",
             }}
           ></div>
         </div>
-        <div>{componentList[page]}</div>
+        {componentList[page]}
         {`page is now: ${page}`}
-
-        {/* <div className="container">
-        {adminMode ? (
-          <RecipeForm
-            name={recipeData.name}
-            description={recipeData.description}
-            time={recipeData.time}
-            imageUrl={recipeData.imageUrl}
-            editMode={editMode}
-          ></RecipeForm>
-        ) : (
-          <RecipeForm />
-        )}
-      </div> */}
       </Form>
     </Fragment>
   );
@@ -116,10 +94,10 @@ export const sendNewRecipe = async ({ request, params }) => {
   const newRecipe = {
     name: data.get("name"),
     description: data.get("description"),
-    time: 15,
+    steps: data.get("steps"),
+    time: data.get("time"),
     ingredients: data.get("ingredients"),
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2022/06/02/18/22/ramen-7238668_1280.jpg",
+    imageUrl: data.get("imageUrl"),
   };
 
   console.log(newRecipe);

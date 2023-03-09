@@ -33,6 +33,7 @@ import { action as createNewUser } from "./Pages/Signup";
 import { action as logoutAction } from "./Pages/Logout";
 import { action as deleteCookbook } from "./Pages/CookbookDetails";
 import { action as deleteRecipe } from "./Pages/RecipeDetails";
+import { action as deleteSaving } from "./Pages/SavingRecipes";
 import { Provider } from "react-redux";
 
 // import { action as sendNewCookbook } from "./components/CookbookForm";
@@ -64,27 +65,27 @@ const router = createBrowserRouter([
                     loader: loadCookbookRecipes,
                     element: <CookbookRecipes />,
                   },
-                  {
-                    path: ":recipeId",
-                    loader: loadRecipeDetails,
-                    element: <RecipeDetails />,
-                  },
-                  {
-                    path: ":recipeId/delete",
-                    loader: authRecipeDelete,
-                    action: deleteRecipe,
-                  },
-                  {
-                    path: ":recipeId/edit",
-                    element: <RecipeNew editMode={true} />,
-                    loader: loadExistingRecipe,
-                    action: sendEditedRecipe,
-                  },
-                  {
-                    path: ":recipeId/save",
-                    action: saveRecipe,
-                  },
                 ],
+              },
+              {
+                path: ":recipeId",
+                loader: loadRecipeDetails,
+                element: <RecipeDetails />,
+              },
+              {
+                path: ":recipeId/delete",
+                loader: authRecipeDelete,
+                action: deleteRecipe,
+              },
+              {
+                path: ":recipeId/edit",
+                element: <RecipeNew editMode={true} />,
+                loader: loadExistingRecipe,
+                action: sendEditedRecipe,
+              },
+              {
+                path: ":recipeId/save",
+                action: saveRecipe,
               },
               {
                 path: "new",
@@ -109,7 +110,12 @@ const router = createBrowserRouter([
       { path: "login", action: loginAction, element: <Login /> },
       { path: "signup", action: createNewUser, element: <Signup /> },
       { path: "logout", action: logoutAction },
-      { path: "savings", loader: loadSavings, element: <SavingRecipes /> },
+      {
+        path: "savings",
+        loader: loadSavings,
+        element: <SavingRecipes />,
+      },
+      { path: ":recipeId/delete-saving", action: deleteSaving },
     ],
   },
 ]);

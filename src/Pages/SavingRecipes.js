@@ -1,8 +1,10 @@
 import React from "react";
 import { getAuthToken } from "../util/Authentification";
 import { json, redirect, useLoaderData } from "react-router";
-import RecipeCard from "../components/recipes/RecipeCard";
+import "../components/recipes/SavedRecipeCard.css";
+import SavedRecipeCard from "../components/recipes/SavedRecipeCard";
 import "../Pages/Home.css";
+import { useSubmit } from "react-router-dom";
 
 const SavingRecipes = () => {
   const token = getAuthToken();
@@ -11,21 +13,44 @@ const SavingRecipes = () => {
     return redirect("/login");
   }
   const recipes = useLoaderData().recipes;
+  const submit = useSubmit();
 
   console.log(useLoaderData());
 
+  const removeSavingHandler = (event) => {
+    event.preventDefault();
+    const recipeId = event.target.closest(".saved-recipe").id;
+    const proceed = window.confirm("are you sure ?");
+
+    if (proceed) {
+      submit(
+        { recipeId: recipeId },
+        {
+          method: "delete",
+          action: `${recipeId}/delete-saving`,
+        }
+      );
+    }
+  };
+
   return (
     <div>
-      <h1 className="saving-title"> This is the recipes you liked </h1>
-      <ul>
+      <h1 className="saving-title"> My favorite recipes</h1>
+      <div className="favorite-recipes">
         {recipes.map((recipe) => {
           return (
-            <li key={recipe.id}>
-              <RecipeCard key={recipes.id} {...recipe} />
-            </li>
+            <div key={recipe.id}>
+              <SavedRecipeCard
+                key={recipes.id}
+                imageUrl={recipe.imageUrl}
+                id={recipe.id}
+                name={recipe.name}
+                onRemove={removeSavingHandler}
+              />
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };
@@ -41,4 +66,21 @@ export const loader = async ({ request, params }) => {
     throw json({ message: "could not fetch all the recipes" }, { status: 500 });
   }
   return response;
+};
+
+export const action = async ({ request, params }) => {
+  const token = getAuthToken();
+  const recipeId = params.recipeId;
+  console.log(recipeId);
+  const response = await fetch(
+    `http://localhost:8080/savings/${recipeId}/delete-saving`,
+    {
+      headers: { Authorization: "Bearer " + token },
+      method: request.method,
+    }
+  );
+  if (!response.ok) {
+    throw json({ message: "could not delete the saving" }, { status: 500 });
+  }
+  return redirect("/cookbooks");
 };

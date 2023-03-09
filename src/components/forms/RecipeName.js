@@ -13,7 +13,10 @@ const RecipeName = ({ page, setPage, formData, setFormData }) => {
       );
       return false;
     }
-    if (value.trim(" ").length < 3 || !/^[a-zA-Z]+$/.test(value)) {
+    if (
+      value.trim(" ").length < 3 ||
+      !/^[A-Za-z0-9\s\-_,.;:()]+$/.test(value)
+    ) {
       nameErrorMessage = (
         <p className="error-message">
           Name sould be more than 3 characters and without special characters
@@ -36,11 +39,11 @@ const RecipeName = ({ page, setPage, formData, setFormData }) => {
 
   return (
     <Fragment>
+      {isClicked && !nameIsValid && nameErrorMessage}
       <h1 className="recipe-form__title">Your recipe Name ? </h1>
       <div className="recipe-form__input ">
-        {isClicked && !nameIsValid && nameErrorMessage}
         <input
-          name="recipeName"
+          name="name"
           placeholder="My spicy lasagnas..."
           type="text"
           onChange={nameValueHandler}

@@ -1,21 +1,26 @@
 import "./RecipeForm.css";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { UseInput as UseIngredients } from "../../hooks/use-input";
 import { useSubmit } from "react-router-dom";
 
 const RecipeIngredients = ({ page, setPage, formData, setFormData }) => {
   const validateIngredients = () => {};
-  const { inputValue: ingredients, inputValueHandler: ingredientsHandler } =
-    UseIngredients(validateIngredients);
+  const {
+    inputValue: ingredientsValue,
+    inputValueHandler: ingredientsHandler,
+  } = UseIngredients(validateIngredients);
   const submit = useSubmit();
+
+  useEffect(() => {
+    setFormData({ ...formData, ingredients: ingredientsValue });
+  }, [ingredientsValue]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(ingredients);
     console.log(formData);
-    setFormData({ ...formData, ingredients: ingredients });
     const proceed = window.confirm("are you sure ?");
 
+    console.log(formData);
     if (proceed) {
       submit(formData, {
         method: "POST",
@@ -29,9 +34,11 @@ const RecipeIngredients = ({ page, setPage, formData, setFormData }) => {
       <h1 className="recipe-form__title"> Indicate the ingredients </h1>
       <div className="recipe-form__input ">
         <textarea
-          name="recipeName"
+          placeholder="salad, potatoes, carrot..."
+          name="ingredients"
           type="text"
           onChange={ingredientsHandler}
+          value={ingredientsValue}
         ></textarea>
         <div className="recipe-actions">
           <button

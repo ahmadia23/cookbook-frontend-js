@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
 import { getAuthToken } from "../util/Authentification";
+import Button from "../UI/Button";
 
 const CookbookDetails = () => {
   const cookbook = useLoaderData().cookbook;
@@ -39,9 +40,15 @@ const CookbookDetails = () => {
           <p className="cookbook-page__description intro-text">
             {cookbook.description}
           </p>
+          {adminMode && (
+            <Button
+              to={`/cookbooks/${cookbookId}/new`}
+              linkName="Add a new recipe"
+              className="cookbook-recipe__link"
+            ></Button>
+          )}
         </div>
       </div>
-      <Outlet />
       {adminMode ? (
         <Form onSubmit={removeCookbookHandler} className={"remove__link"}>
           <button className="cookbook-remove__link">
@@ -51,6 +58,7 @@ const CookbookDetails = () => {
       ) : (
         ""
       )}
+      <Outlet />
     </Fragment>
   );
 };

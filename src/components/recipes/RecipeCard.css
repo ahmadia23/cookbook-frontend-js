@@ -1,41 +1,110 @@
 .recipe-card {
   display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  padding: 16px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
+  height: 30vh;
+  margin: 1rem 0.4rem;
+}
+.recipe-card h4 {
+  margin: 0;
 }
 
 .recipe-card__image {
-  width: 150px;
-  height: 150px;
+  height: 100%;
   border-radius: 4px;
   margin-right: 16px;
+  width: 13rem;
 }
 
 .recipe-card__content {
+  height: 100%;
   flex: 1;
 }
 
+.recipe-card__content {
+  padding: 1rem auto;
+  overflow: scroll;
+  text-overflow: scroll;
+}
+.recipe-card__content p {
+  font-size: calc(1rem + 0.1vw);
+}
+
 .recipe-card__title {
-  font-size: 24px;
+  font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .recipe-card__description {
-  font-size: 18px;
+  font-size: calc(0.6rem + 2vw);
   color: #999;
   margin-bottom: 8px;
+  margin-top: 0.1rem;
 }
 
 .recipe-card__time {
   font-size: 18px;
   color: #999;
+  margin-top: 0.2rem;
 }
 
 .recipe-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-page__content {
+  margin: auto 15%;
+  border-radius: 1rem;
+}
+.recipe-page__content h3 {
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.recipe-page__content p {
+  font-size: calc(0.8rem + 0.2vw);
+  opacity: 1;
+}
+
+.recipe-page__main {
+  text-align: center;
+  font-weight: bold;
+  font-size: calc(1rem + 0.4vw);
+  padding: calc(6rem + 2vw);
+  border-radius: 1rem;
+}
+
+.saving-button {
+  background-color: var(--color-primary-900);
+  color: white;
+  text-align: end;
+  margin-left: 15%;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  border-radius: 0.2rem;
+  border: none;
+  padding: 0.6rem 0.8rem;
+}
+
+.saving-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.success-message {
+  color: var(--color-primary-900);
+  text-align: center;
+}
+
+.remove-button {
+  margin: 1rem 40%;
+  background-color: red;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.2rem;
+  transition: 0.4s ease;
 }

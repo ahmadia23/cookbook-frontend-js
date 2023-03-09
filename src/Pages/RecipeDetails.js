@@ -1,33 +1,20 @@
-import {
-  json,
-  Outlet,
-  redirect,
-  useActionData,
-  useNavigate,
-  useParams,
-} from "react-router";
+import { json, Outlet, redirect, useParams } from "react-router";
 import { useLoaderData } from "react-router";
 import "../components/recipes/RecipeCard.css";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import React from "react";
 import { useSubmit, Form } from "react-router-dom";
 import { getAuthToken } from "../util/Authentification";
 import Button from "../UI/Button";
 import "../UI/errors.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData().recipe;
-  const errorMessage = useActionData();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (errorMessage) {
-      navigate(".");
-    }
-  }, errorMessage);
+  let lineNumber = 0;
+  let successMessage = "";
 
-  if (errorMessage) {
-    console.log("errooooor", errorMessage.message);
-  }
   const submit = useSubmit();
   const recipeId = useParams().recipeId;
   const cookbookId = useParams().cookbookId;
@@ -42,7 +29,7 @@ const RecipeDetails = () => {
         { recipeId: recipeId },
         {
           method: "delete",
-          action: `/cookbooks/${cookbookId}/recipes/${recipeId}/delete`,
+          action: `/cookbooks/${cookbookId}/${recipeId}/delete`,
         }
       );
     }
@@ -55,35 +42,59 @@ const RecipeDetails = () => {
       { recipeId: recipeId },
       {
         method: "POST",
-        action: `/cookbooks/${cookbookId}/recipes/${recipeId}/save`,
+        action: `/cookbooks/${cookbookId}/${recipeId}/save`,
       }
     );
+    successMessage = "Recipe has been saved";
   };
+
+  // console.log(recipe.steps.trim(" ").split(/\d+\./));
+  const stepsLines = recipe.steps.trim(" ").split(/\d+\./).slice(1);
 
   return (
     <Fragment>
-      <p className="error-message">ok</p>
+      {successMessage && <h2 className="success-message">{successMessage}</h2>}
       <div className="recipe-page">
         <Form onSubmit={saveRecipeHandler}>
-          <button>Save this recipe</button>
+          <button className="saving-button">
+            <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+          </button>
         </Form>
-        <img
-          src={recipe.imageUrl}
-          alt={recipe.name}
-          className="recipe-page__image"
-        />
+
         <div className="recipe-page__content">
-          <h3 className="recipe-page__title">{recipe.name}</h3>
-          <p className="recipe-page__description">{recipe.description}</p>
-          <span className="recipe-page__theme">{recipe.time}</span>
+          <div
+            className="recipe-page__main"
+            style={{
+              backgroundImage: `url(${recipe.imageUrl})`,
+              width: "70vw",
+            }}
+          >
+            <h2> {recipe.name}</h2>
+            <p className="recipe-page__description">{recipe.description}</p>
+          </div>
+          <h3>
+            Preparation Time :{" "}
+            <span className="recipe-page__theme">{recipe.time} minutes</span>
+          </h3>
+          {stepsLines.map((line) => {
+            lineNumber += 1;
+            return (
+              <p
+                key={Math.floor(Math.random() * 50)}
+                className="recipe-page__steps"
+              >
+                {`${lineNumber}- ${line}`}
+              </p>
+            );
+          })}
         </div>
       </div>
-      {adminMode ? (
+      {adminMode && (
         <Form onSubmit={removeRecipeHandler}>
-          <Button linkName="Remove this recipe"></Button>
+          <button type="submit" className="remove-button">
+            Remove this recipe
+          </button>
         </Form>
-      ) : (
-        ""
       )}
       {adminMode ? (
         <Button to={`edit`} linkName="edit this recipe"></Button>
@@ -122,6 +133,8 @@ export const action = async ({ request, params }) => {
   const token = getAuthToken();
   const recipeId = params.recipeId;
   const cookbookId = params.cookbookId;
+
+  console.log("enterred");
 
   const response = await fetch(
     `http://localhost:8080/recipes/${recipeId}/delete`,

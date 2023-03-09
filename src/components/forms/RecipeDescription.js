@@ -1,5 +1,6 @@
 import "./RecipeForm.css";
-import React, { Fragment, useState } from "react";
+import "../../UI/errors.css";
+import React, { Fragment, useEffect, useState } from "react";
 import { UseInput as UseDes } from "../../hooks/use-input";
 
 const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
@@ -13,10 +14,37 @@ const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
       );
       return false;
     }
-    if (value.trim(" ").length < 20) {
+    if (value.trim(" ").length < 10) {
       errorMessage = (
         <p className="error-message">
-          Description sould be more than 20 characters
+          Description sould be more than 10 characters
+        </p>
+      );
+      return false;
+    } else if (value.trim(" ").length > 105) {
+      errorMessage = (
+        <p className="error-message">
+          Description is too long, max 105 characters
+          {value.trim(" ").length}
+        </p>
+      );
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const validateSteps = (value) => {
+    if (value.trim(" ").length === 0) {
+      errorMessage = (
+        <p className="error-message">Description should not be empty</p>
+      );
+      return false;
+    }
+    if (value.trim(" ").length < 30) {
+      errorMessage = (
+        <p className="error-message">
+          Description sould be more than 30 characters
         </p>
       );
       return false;
@@ -28,26 +56,53 @@ const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
   const {
     inputValue: descriptionValue,
     inputIsValid: descriptionValid,
+    hasError: descriptionHasError,
     inputBlurHandler: descriptionBlurHandler,
     inputValueHandler: descriptionValueHandler,
   } = UseDes(validateDescription);
 
-  const descriptionClasses = !descriptionValid ? "error-field" : "";
+  const {
+    inputValue: stepsValue,
+    inputIsValid: stepsIsValid,
+    hasError: stepsHasError,
+    inputBlurHandler: stepsBlurHandler,
+    inputValueHandler: stepsValueHandler,
+  } = UseDes(validateSteps);
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      description: descriptionValue,
+      steps: stepsValue,
+    });
+  }, [stepsValue, descriptionValue]);
+
+  const descriptionClasses = descriptionHasError ? "errorInput" : "";
+  const setpsClasses = stepsHasError ? "errorInput" : "";
   console.log(formData);
   console.log(descriptionValue);
 
   return (
     <Fragment>
+      {isClicked && !descriptionValid && errorMessage}
       <h1 className="recipe-form__title">Describe your recipe ?</h1>
       <div className="recipe-form__input ">
-        {isClicked && !descriptionValid && errorMessage}
-        <textarea
-          name="recipeName"
+        <label>Short description</label>
+        <input
+          name="description"
           placeholder="With tender pasta noodles, a deliciously..."
-          type="text"
           onChange={descriptionValueHandler}
           onBlur={descriptionBlurHandler}
           className={descriptionClasses}
+        ></input>
+        <label>Describe the steps in the following format</label>
+        <textarea
+          name="steps"
+          placeholder="1. Dice onions carrot and vegetables ..."
+          type="text"
+          onChange={stepsValueHandler}
+          onBlur={stepsBlurHandler}
+          className={setpsClasses}
         ></textarea>
         <div className="recipe-actions">
           <button
@@ -57,13 +112,10 @@ const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
             onClick={(e) => {
               e.preventDefault();
               setIsClicked(true);
-              if (!descriptionValid) {
-                errorMessage = (
-                  <p className="error-message">Description is invalid</p>
-                );
+              if (!descriptionValid || !stepsIsValid) {
+                errorMessage = <p className="error-message">Invalid fields</p>;
                 return;
               }
-              setFormData({ ...formData, description: descriptionValue });
               console.log(formData);
               setPage(page + 1);
             }}

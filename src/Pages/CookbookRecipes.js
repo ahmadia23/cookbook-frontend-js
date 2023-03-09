@@ -2,20 +2,19 @@ import React from "react";
 import { NavLink, useLoaderData, json, useParams } from "react-router-dom";
 import classes from "../UI/link.module.css";
 import RecipeCard from "../components/recipes/RecipeCard";
-import Button from "../UI/Button";
 import { getAuthToken } from "../util/Authentification";
 import "./Cookbooks.css";
 
 const CookbookRecipes = () => {
   const recipes = useLoaderData().recipes;
   const cookbookId = useParams().cookbookId;
-  const adminMode = useLoaderData().adminMode;
+  // const adminMode = useLoaderData().adminMode;
 
   const RecipeList = recipes.map((recipe) => {
     return (
       <NavLink
         key={recipe.id}
-        to={`/cookbooks/${cookbookId}/recipes/${recipe.id}`}
+        to={`/cookbooks/${cookbookId}/${recipe.id}`}
         className={classes.links}
         end
       >
@@ -25,17 +24,9 @@ const CookbookRecipes = () => {
   });
 
   return (
-    <div className="container">
+    <div className="border__section-top ">
+      <h2 className="intro-recipes">All the recipes</h2>
       {RecipeList}
-      {adminMode ? (
-        <Button
-          to={`/cookbooks/${cookbookId}/new`}
-          linkName="Add a new recipe"
-          className="cookbook-recipe__link"
-        ></Button>
-      ) : (
-        ""
-      )}
     </div>
   );
 };
