@@ -8,14 +8,14 @@ import { useSubmit } from "react-router-dom";
 
 const SavingRecipes = () => {
   const token = getAuthToken();
+  const recipes = useLoaderData().recipes;
+  const submit = useSubmit();
   if (!token) {
     console.log("hello");
     return redirect("/login");
   }
-  const recipes = useLoaderData().recipes;
-  const submit = useSubmit();
 
-  console.log(useLoaderData());
+  console.log(useLoaderData);
 
   const removeSavingHandler = (event) => {
     event.preventDefault();
