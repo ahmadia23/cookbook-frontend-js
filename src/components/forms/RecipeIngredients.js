@@ -13,7 +13,7 @@ const RecipeIngredients = ({ page, setPage, formData, setFormData }) => {
 
   useEffect(() => {
     setFormData({ ...formData, ingredients: ingredientsValue });
-  }, [ingredientsValue]);
+  }, [ingredientsValue, formData, setFormData]);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -35,7 +35,6 @@ function CookbookList(props) {
             to={token ? `/cookbooks/${cookbook.id}/recipes` : "/login"}
             className="links"
             onClick={() => {
-              console.log("you clicked");
               window.scroll({
                 top: 0,
                 left: 0,

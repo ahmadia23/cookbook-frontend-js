@@ -75,7 +75,7 @@ const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
       description: descriptionValue,
       steps: stepsValue,
     });
-  }, [stepsValue, descriptionValue]);
+  }, [stepsValue, descriptionValue, formData, setFormData]);
 
   const descriptionClasses = descriptionHasError ? "errorInput" : "";
   const setpsClasses = stepsHasError ? "errorInput" : "";
