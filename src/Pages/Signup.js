@@ -80,20 +80,9 @@ const Signup = () => {
       ""
     );
 
-  // resetSndPassword();
-  // resetEmail();
-  // resetPassword();
-
   return (
     <div className="form-container">
-      <Form
-        method="POST"
-        action="/signup"
-        className="login-form"
-        // action={isLogged }
-        // onSubmit={useActionData(action)}
-        // onSubmit={submitHandler}
-      >
+      <Form method="POST" action="/signup" className="login-form">
         <p className="error-message">{data && data.errorMessage}</p>
         {notMatching}
         {emailHasError && errorMailMessage}

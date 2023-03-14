@@ -19,12 +19,13 @@ import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
 import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
 import { loader as loadRecipeDetails } from "./Pages/RecipeDetails";
 import { loader as loadSavings } from "./Pages/SavingRecipes";
-import { checkAuthLoader } from "./util/Authentification";
-import { tokenLoader } from "./util/Authentification";
-import { authRecipeAdd } from "./util/Authentification";
-import { authRecipeDelete } from "./util/Authentification";
-import { loadExistingRecipe } from "./Pages/RecipeNew";
-import { sendEditedRecipe } from "./Pages/RecipeNew";
+import {
+  checkAuthLoader,
+  authRecipeAdd,
+  tokenLoader,
+  authRecipeDelete,
+} from "./util/Authentification";
+import { loadExistingRecipe, sendEditedRecipe } from "./Pages/RecipeNew";
 import { saveRecipe } from "./util/Actions";
 import { action as sendNewCookbook } from "./Pages/CookbookNew";
 import { sendNewRecipe } from "./Pages/RecipeNew";
@@ -35,8 +36,6 @@ import { action as deleteCookbook } from "./Pages/CookbookDetails";
 import { action as deleteRecipe } from "./Pages/RecipeDetails";
 import { action as deleteSaving } from "./Pages/SavingRecipes";
 import { Provider } from "react-redux";
-
-// import { action as sendNewCookbook } from "./components/CookbookForm";
 
 const router = createBrowserRouter([
   {
