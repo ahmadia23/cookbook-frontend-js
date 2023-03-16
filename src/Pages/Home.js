@@ -34,13 +34,13 @@ const Home = () => {
             family.
           </p>
           <img src={websitePng} alt="cooking website"></img>
-          <p className="home-intro reveal">
-            Join our community of passionate cooks and start creating your own
-            cookbook today. Explore the world of cooking and discover new
-            dishes, flavors, and techniques.
-          </p>
         </div>
-        <div className="home-intro reveal">
+        <p className="home-community reveal">
+          Join our community of passionate cooks and start creating your own
+          cookbook today. Explore the world of cooking and discover new dishes,
+          flavors, and techniques.
+        </p>
+        <div className="home-community reveal">
           <p>Unleash your culinary creativity and let's get cooking!</p>
           <button className="home-link" onClick={launchAppHandler}>
             Launch App

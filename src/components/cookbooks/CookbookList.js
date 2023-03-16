@@ -20,7 +20,6 @@ function CookbookList(props) {
   };
 
   if (props.random) {
-    console.log(shuffleArray(cookbooks));
     cookbooks = shuffleArray(cookbooks).slice(0, 2);
   }
 

@@ -9,10 +9,6 @@ const PromessCard = (props) => {
       const textPosition = text.getBoundingClientRect().top;
       const screenPosition = window.innerHeight / 2;
 
-      console.log(text);
-      console.log(textPosition);
-      console.log(screenPosition);
-
       if (textPosition < screenPosition) {
         text.classList.add("show");
       } else {

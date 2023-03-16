@@ -79,8 +79,6 @@ const RecipeDescription = ({ page, setPage, formData, setFormData }) => {
 
   const descriptionClasses = descriptionHasError ? "errorInput" : "";
   const setpsClasses = stepsHasError ? "errorInput" : "";
-  console.log(formData);
-  console.log(descriptionValue);
 
   return (
     <Fragment>

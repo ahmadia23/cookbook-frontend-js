@@ -63,7 +63,6 @@ const RecipeName = ({ page, setPage, formData, setFormData }) => {
                 return nameErrorMessage;
               }
               setFormData({ ...formData, name: nameValue });
-              console.log(formData);
               setPage(page + 1);
             }}
           >

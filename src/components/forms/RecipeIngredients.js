@@ -17,10 +17,8 @@ const RecipeIngredients = ({ page, setPage, formData, setFormData }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
     const proceed = window.confirm("are you sure ?");
 
-    console.log(formData);
     if (proceed) {
       submit(formData, {
         method: "POST",

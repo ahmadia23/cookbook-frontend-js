@@ -1,17 +1,8 @@
 import React, { Fragment } from "react";
-// import UseInput from "../hooks/use-input";
 import "./CookbookForm.css";
 import { Form } from "react-router-dom";
 
 const CookbookForm = (props) => {
-  // const validateName = (name) => {
-  //   return name.trim().length !== 0;
-  //
-  // const [name, setName] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [theme, setTheme] = useState("");
-  // const [image, setImage] = useState("");
-
   const handleSubmit = (event) => {
     console.log("I submited the form");
   };

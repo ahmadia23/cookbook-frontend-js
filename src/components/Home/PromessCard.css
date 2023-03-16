@@ -47,7 +47,7 @@
   flex-direction: column;
   display: flex;
   padding: 2em;
-  width: 70%;
+  width: 85%;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
   margin: 4rem auto;
@@ -56,9 +56,8 @@
 .home-website p {
   color: white;
   font-weight: bold;
-  font-size: x-large;
   line-height: 2rem;
-  margin: 4rem auto;
   text-align: center;
-  padding: 1em;
+  font-size: calc(18px + 0.4vw);
+  margin-bottom: 5rem;
 }

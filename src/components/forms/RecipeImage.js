@@ -58,7 +58,6 @@ const RecipeImage = ({ page, setPage, formData, setFormData }) => {
                 return imageErrorMessage;
               }
               setFormData({ ...formData, imageUrl: imageValue });
-              console.log(formData);
               setPage(page + 1);
             }}
           >
