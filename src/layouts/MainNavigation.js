@@ -38,7 +38,7 @@ const MainNavigation = (props) => {
               }
               end
             >
-              Cookbooks
+              Inspiration
             </NavLink>
           </li>
 

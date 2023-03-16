@@ -59,9 +59,12 @@ export default SavingRecipes;
 
 export const loader = async ({ request, params }) => {
   const token = getAuthToken();
-  const response = await fetch(`http://localhost:8080/savings`, {
-    headers: { Authorization: "Bearer " + token },
-  });
+  const response = await fetch(
+    `https://cookbook-backend12.herokuapp.com/savings`,
+    {
+      headers: { Authorization: "Bearer " + token },
+    }
+  );
   if (!response.ok) {
     throw json({ message: "could not fetch all the recipes" }, { status: 500 });
   }
@@ -73,7 +76,7 @@ export const action = async ({ request, params }) => {
   const recipeId = params.recipeId;
   console.log(recipeId);
   const response = await fetch(
-    `http://localhost:8080/savings/${recipeId}/delete-saving`,
+    `https://cookbook-backend12.herokuapp.com/savings/${recipeId}/delete-saving`,
     {
       headers: { Authorization: "Bearer " + token },
       method: request.method,

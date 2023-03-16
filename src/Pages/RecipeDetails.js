@@ -112,7 +112,7 @@ export const loader = async ({ request, params }) => {
   const cookbookId = params.cookbookId;
   const token = getAuthToken();
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${cookbookId}/${recipeId}`,
+    `https://cookbook-backend12.herokuapp.com/cookbooks/${cookbookId}/${recipeId}`,
     {
       headers: {
         Authorization: "Bearer " + token,
@@ -137,7 +137,7 @@ export const action = async ({ request, params }) => {
   console.log("enterred");
 
   const response = await fetch(
-    `http://localhost:8080/recipes/${recipeId}/delete`,
+    `https://cookbook-backend12.herokuapp.com/recipes/${recipeId}/delete`,
     {
       headers: {
         Authorization: "Bearer " + token,

@@ -50,7 +50,7 @@ export const authorizeActions = async ({ request, params }, accessType) => {
   const cookbookId = params.cookbookId;
 
   const response = await fetch(
-    `http://localhost:8080/allow/${cookbookId}?accessType=${accessType}`,
+    `https://cookbook-backend12.herokuapp.com/allow/${cookbookId}?accessType=${accessType}`,
     {
       headers: { Authorization: "Bearer " + token },
     }

@@ -102,7 +102,7 @@ export const sendNewRecipe = async ({ request, params }) => {
 
   console.log(newRecipe);
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${cookbookId}/add-recipe`,
+    `https://cookbook-backend12.herokuapp.com/cookbooks/${cookbookId}/add-recipe`,
     {
       method: "POST",
       headers: {
@@ -126,7 +126,7 @@ export const loadExistingRecipe = async ({ request, params }) => {
   const token = getAuthToken();
 
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${cookbookId}/${recipeId}`,
+    `https://cookbook-backend12.herokuapp.com/cookbooks/${cookbookId}/${recipeId}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -156,7 +156,7 @@ export const sendEditedRecipe = async ({ request, params }) => {
 
   console.log("from editing :", newRecipe);
   const response = await fetch(
-    `http://localhost:8080/recipes/${recipeId}/edit`,
+    `https://cookbook-backend12.herokuapp.com/recipes/${recipeId}/edit`,
     {
       method: "PUT",
       headers: {

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   padding: 80px 60px;
+  margon-top: 10em;
   padding-top: 1.2em;
   background: black;
   bottom: 0;
@@ -30,7 +31,7 @@ export const Column = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
 
   @media (max-width: 1000px) {
@@ -45,7 +46,7 @@ export const FooterLink = styled.a`
   text-decoration: none;
 
   &:hover {
-    color: green;
+    color: var(--color-primary-900);
     transition: 200ms ease-in;
   }
 `;

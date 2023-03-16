@@ -113,3 +113,14 @@
   text-align: center;
   margin: 2rem auto;
 }
+
+.results-section {
+  color: white;
+  background-color: #0f0f0f;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+.results-number {
+  text-align: center;
+}

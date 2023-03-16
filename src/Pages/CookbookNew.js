@@ -25,14 +25,17 @@ export const action = async ({ request, params }) => {
   };
 
   console.log(cookbookData);
-  const response = await fetch("http://localhost:8080/new-cookbook", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-    body: JSON.stringify(cookbookData),
-  });
+  const response = await fetch(
+    "https://cookbook-backend12.herokuapp.com/new-cookbook",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(cookbookData),
+    }
+  );
   if (!response.ok) {
     throw json({ message: "could not add the cookbook" }, { status: 500 });
   }

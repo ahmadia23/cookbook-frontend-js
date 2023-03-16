@@ -50,7 +50,11 @@ const router = createBrowserRouter([
         path: "cookbooks",
         loader: loadCookbooks,
         children: [
-          { index: true, element: <Cookbooks />, loader: loadCookbooks },
+          {
+            path: "",
+            element: <Cookbooks />,
+            loader: loadCookbooks,
+          },
           {
             path: ":cookbookId",
             children: [

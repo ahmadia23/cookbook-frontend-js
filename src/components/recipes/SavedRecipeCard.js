@@ -9,21 +9,24 @@ const SavedRecipeCard = ({ name, imageUrl, onRemove, id }) => {
       <button className="remove-button" onClick={onRemove}>
         <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
       </button>
-      <h2
-        class="recipe__saved-title"
+      <div
+        class="saving-card"
         style={{
           backgroundImage: `url(${imageUrl})`,
           width: "32vw",
           height: "30vh",
-          padding: "6rem",
+          padding: "4rem",
           borderRadius: "1rem",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "rgba(0, 0, 0, 0.3)",
+          position: "relative",
+          opacity: "0.9",
+          zIndex: "0.6",
         }}
       >
-        {name}
-      </h2>
+        <h2 className="recipe__saved-title"> {name}</h2>
+      </div>
     </div>
   );
 };

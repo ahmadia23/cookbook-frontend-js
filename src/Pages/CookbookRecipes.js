@@ -37,7 +37,7 @@ export const loader = async ({ request, params }) => {
   const token = getAuthToken();
   const id = params.cookbookId;
   const response = await fetch(
-    `http://localhost:8080/cookbooks/${id}/recipes`,
+    `https://cookbook-backend12.herokuapp.com/cookbooks/${id}/recipes`,
     {
       headers: { Authorization: "Bearer " + token },
     }

@@ -9,7 +9,7 @@ export const saveRecipe = async ({ request, params }) => {
 
   console.log("right action cookbookid is: ", cookbookId);
   const response = await fetch(
-    `http://localhost:8080/recipes/${recipeId}/save`,
+    `https://cookbook-backend12.herokuapp.com/recipes/${recipeId}/save`,
     {
       headers: {
         Authorization: "Bearer " + token,

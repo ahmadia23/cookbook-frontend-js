@@ -132,11 +132,14 @@ export const action = async ({ request, params }) => {
     password: data.get("password"),
   };
 
-  const response = await fetch("http://localhost:8080/login", {
-    headers: { "Content-Type": "application/json" },
-    method: "POST",
-    body: JSON.stringify(loginData),
-  });
+  const response = await fetch(
+    "https://cookbook-backend12.herokuapp.com/login",
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(loginData),
+    }
+  );
   if (response.status === 422) {
     redirect("/login");
     return response;

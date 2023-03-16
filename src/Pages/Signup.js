@@ -156,11 +156,14 @@ export const action = async ({ request, params }) => {
     password: data.get("password"),
     confirmedPassword: data.get("SndPassword"),
   };
-  const response = await fetch("http://localhost:8080/signup", {
-    headers: { "Content-Type": "application/json" },
-    method: "POST",
-    body: JSON.stringify(newUser),
-  });
+  const response = await fetch(
+    "https://cookbook-backend12.herokuapp.com/signup",
+    {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(newUser),
+    }
+  );
 
   if (response.status === 422) {
     redirect("/signup");

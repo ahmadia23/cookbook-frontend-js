@@ -11,7 +11,7 @@
   display: flex;
   gap: 10rem;
   margin-top: 1em;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .list li {
