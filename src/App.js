@@ -1,104 +1,165 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Home";
-import RootLayout from "./Pages/Root";
-import Cookbooks from "./Pages/Cookbooks";
-import CookbookNew from "./Pages/CookbookNew";
-import CookbookRecipes from "./Pages/CookbookRecipes";
-import ErrorPage from "./Pages/ErrorPage";
-import CookbookDetails from "./Pages/CookbookDetails";
-import RecipeDetails from "./Pages/RecipeDetails";
-import RecipeNew from "./Pages/RecipeNew";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
-import SavingRecipes from "./Pages/SavingRecipes";
-import store from "./store/index-redux";
-import { loader as loadCookbooks } from "./Pages/Cookbooks";
-import { loader as loadCookbookDetails } from "./Pages/CookbookDetails";
-import { loader as loadCookbookRecipes } from "./Pages/CookbookRecipes";
-import { loader as loadRecipeDetails } from "./Pages/RecipeDetails";
-import { loader as loadSavings } from "./Pages/SavingRecipes";
-import {
-  checkAuthLoader,
-  authRecipeAdd,
-  tokenLoader,
-  authRecipeDelete,
-} from "./util/Authentification";
-import { loadExistingRecipe, sendEditedRecipe } from "./Pages/RecipeNew";
-import { saveRecipe } from "./util/Actions";
-import { action as sendNewCookbook } from "./Pages/CookbookNew";
-import { sendNewRecipe } from "./Pages/RecipeNew";
-import { action as loginAction } from "./Pages/Login";
-import { action as createNewUser } from "./Pages/Signup";
-import { action as logoutAction } from "./Pages/Logout";
-import { action as deleteCookbook } from "./Pages/CookbookDetails";
-import { action as deleteRecipe } from "./Pages/RecipeDetails";
-import { action as deleteSaving } from "./Pages/SavingRecipes";
 import { Provider } from "react-redux";
+import store from "./store/index-redux";
+
+const Home = lazy(() => import("./Pages/Home"));
+const RootLayout = lazy(() => import("./Pages/Root"));
+
+const Login = lazy(() => import("./Pages/Login"));
+const Signup = lazy(() => import("./Pages/Signup"));
+
+const Cookbooks = lazy(() => import("./Pages/Cookbooks"));
+const CookbookNew = lazy(() => import("./Pages/CookbookNew"));
+const CookbookRecipes = lazy(() => import("./Pages/CookbookRecipes"));
+const CookbookDetails = lazy(() => import("./Pages/CookbookDetails"));
+
+const RecipeDetails = lazy(() => import("./Pages/RecipeDetails"));
+const RecipeNew = lazy(() => import("./Pages/RecipeNew"));
+const SavingRecipes = lazy(() => import("./Pages/SavingRecipes"));
+
+const ErrorPage = lazy(() => import("./Pages/ErrorPage"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
-    element: <RootLayout />,
+    errorElement: (
+      <Suspense>
+        <ErrorPage />
+      </Suspense>
+    ),
+    element: (
+      <Suspense>
+        <RootLayout />
+      </Suspense>
+    ),
     id: "tokenLoader",
-    loader: tokenLoader,
+    loader: (meta) =>
+      import("./util/Authentification").then((module) =>
+        module.tokenLoader(meta)
+      ),
     children: [
-      { path: "", element: <Home /> },
+      {
+        path: "",
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
+      },
       {
         path: "cookbooks",
-        loader: loadCookbooks,
+        loader: (meta) =>
+          import("./Pages/Cookbooks").then((module) => module.loader(meta)),
         children: [
           {
             path: "",
-            element: <Cookbooks />,
-            loader: loadCookbooks,
+            element: (
+              <Suspense>
+                <Cookbooks />
+              </Suspense>
+            ),
+            loader: (meta) =>
+              import("./Pages/Cookbooks").then((module) => module.loader(meta)),
           },
           {
             path: ":cookbookId",
             children: [
               {
                 path: "",
-                loader: loadCookbookDetails,
-                element: <CookbookDetails />,
+                loader: (meta) =>
+                  import("./Pages/CookbookDetails").then((module) =>
+                    module.loader(meta)
+                  ),
+                element: (
+                  <Suspense>
+                    <CookbookDetails />
+                  </Suspense>
+                ),
                 children: [
                   {
                     path: "recipes",
-                    loader: loadCookbookRecipes,
-                    element: <CookbookRecipes />,
+                    loader: (meta) =>
+                      import("./Pages/CookbookRecipes").then((module) =>
+                        module.loader(meta)
+                      ),
+                    element: (
+                      <Suspense>
+                        <CookbookRecipes />
+                      </Suspense>
+                    ),
                   },
                 ],
               },
               {
                 path: ":recipeId",
-                loader: loadRecipeDetails,
-                element: <RecipeDetails />,
+                loader: (meta) =>
+                  import("./Pages/RecipeDetails").then((module) =>
+                    module.loader(meta)
+                  ),
+                element: (
+                  <Suspense>
+                    <RecipeDetails />
+                  </Suspense>
+                ),
               },
               {
                 path: ":recipeId/delete",
-                loader: authRecipeDelete,
-                action: deleteRecipe,
+                loader: (meta) =>
+                  import("./util/Authentification").then((module) =>
+                    module.authRecipeDelete(meta)
+                  ),
+                action: (meta) =>
+                  import("./Pages/RecipeDetails").then((module) =>
+                    module.action(meta)
+                  ),
               },
               {
                 path: ":recipeId/edit",
-                element: <RecipeNew editMode={true} />,
-                loader: loadExistingRecipe,
-                action: sendEditedRecipe,
+                element: (
+                  <Suspense>
+                    <RecipeNew editMode={true} />
+                  </Suspense>
+                ),
+                loader: (meta) =>
+                  import("./Pages/RecipeNew").then((module) =>
+                    module.loadExistingRecipe(meta)
+                  ),
+                action: (meta) =>
+                  import("./Pages/RecipeNew").then((module) =>
+                    module.sendEditedRecipe(meta)
+                  ),
               },
               {
                 path: ":recipeId/save",
-                action: saveRecipe,
+                action: (meta) =>
+                  import("./util/Actions").then((module) =>
+                    module.saveRecipe(meta)
+                  ),
               },
               {
                 path: "new",
-                action: sendNewRecipe,
-                loader: authRecipeAdd,
-                element: <RecipeNew />,
+                action: (meta) =>
+                  import("./Pages/RecipeNew").then((module) =>
+                    module.sendNewRecipe(meta)
+                  ),
+                loader: (meta) =>
+                  import("./util/Authentification").then((module) =>
+                    module.authRecipeAdd(meta)
+                  ),
+                element: (
+                  <Suspense>
+                    <RecipeNew />
+                  </Suspense>
+                ),
               },
               {
                 path: "delete",
-                action: deleteCookbook,
+                action: (meta) =>
+                  import("./Pages/CookbookDetails").then((module) =>
+                    module.action(meta)
+                  ),
               },
             ],
           },
@@ -106,19 +167,58 @@ const router = createBrowserRouter([
       },
       {
         path: "new",
-        action: sendNewCookbook,
-        loader: checkAuthLoader,
-        element: <CookbookNew />,
+        action: (meta) =>
+          import("./Pages/CookbookNew").then((module) => module.action(meta)),
+        loader: (meta) =>
+          import("./util/Authentification").then((module) =>
+            module.checkAuthLoader(meta)
+          ),
+        element: (
+          <Suspense>
+            <CookbookNew />
+          </Suspense>
+        ),
       },
-      { path: "login", action: loginAction, element: <Login /> },
-      { path: "signup", action: createNewUser, element: <Signup /> },
-      { path: "logout", action: logoutAction },
+      {
+        path: "login",
+        action: (meta) =>
+          import("./Pages/Login").then((module) => module.action(meta)),
+        element: (
+          <Suspense>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "signup",
+        action: (meta) =>
+          import("./Pages/Signup").then((module) => module.action(meta)),
+        element: (
+          <Suspense>
+            <Signup />
+          </Suspense>
+        ),
+      },
+      {
+        path: "logout",
+        action: (meta) =>
+          import("./Pages/Logout").then((module) => module.action(meta)),
+      },
       {
         path: "savings",
-        loader: loadSavings,
-        element: <SavingRecipes />,
+        loader: (meta) =>
+          import("./Pages/SavingRecipes").then((module) => module.loader(meta)),
+        element: (
+          <Suspense>
+            <SavingRecipes />
+          </Suspense>
+        ),
       },
-      { path: ":recipeId/delete-saving", action: deleteSaving },
+      {
+        path: ":recipeId/delete-saving",
+        action: (meta) =>
+          import("./Pages/SavingRecipes").then((module) => module.action(meta)),
+      },
     ],
   },
 ]);
