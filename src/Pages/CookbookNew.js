@@ -5,7 +5,7 @@ import { getAuthToken } from "../util/Authentification";
 
 const CookbookNew = () => {
   return (
-    <div className="container">
+    <div className="cookbook__new">
       <CookbookForm></CookbookForm>
     </div>
   );

@@ -1,17 +1,16 @@
 import { Fragment } from "react";
-import classes from "./Banner.module.css";
+import "./Banner.css";
 import React from "react";
 const Banner = () => {
   return (
     <Fragment>
-      <div className={classes.banner}>
+      <div className="banner">
         <div class="container">
           <h1>
             Welcome to the world of <strong>culinary creativity! </strong>
           </h1>
-          <p>
-            Change your life and learn to code at one of our campuses around the
-            world.
+          <p className="banner__text">
+            Learn to cook elegant and elaborated recipes form all over the world
           </p>
         </div>
       </div>

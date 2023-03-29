@@ -1,7 +1,7 @@
 .card {
   width: 22rem;
   height: 22rem;
-  margin-inline: 2rem;
+  margin-inline: 1rem;
   background-color: transparent;
   font-weight: bold;
   margin-top: 1em;
@@ -9,8 +9,8 @@
 }
 
 .card__selection-theme {
-  width: 20rem;
-  height: 20rem;
+  width: 18rem;
+  height: 18rem;
   margin-inline: 2rem;
   background-color: transparent;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);

@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import "./CookbookForm.css";
+import "../../Pages/Login.css";
 import { Form } from "react-router-dom";
+import { ImagePicker } from "react-file-picker";
 
 const CookbookForm = (props) => {
   const handleSubmit = (event) => {
@@ -15,8 +17,8 @@ const CookbookForm = (props) => {
         alt="create a cookbook"
       ></img>
       <Form onSubmit={handleSubmit} method="post" className="cookbook-form">
-        <div class="title">Create your Cookbook</div>
-        <div class="subtitle">Connect with the community!</div>
+        <h2 class="title">Create your Cookbook</h2>
+        <h3 class="subtitle">Connect with the community!</h3>
         <div className={"input-container ic1"}>
           <input
             type="text"
@@ -51,13 +53,20 @@ const CookbookForm = (props) => {
           <label className="placeholder">Theme</label>
         </div>
         <div className={"input-container ic1"}>
-          <input
-            type="text"
-            name="image"
-            className="input"
-            placeholder="https://..."
-            value={props.imageValue}
-          ></input>
+          <ImagePicker
+            extensions={["jpg", "jpeg", "png"]}
+            dims={{
+              minWidth: 100,
+              maxWidth: 500,
+              minHeight: 100,
+              maxHeight: 500,
+            }}
+            onChange={(base64) => {}}
+            onError={(errMsg) => {}}
+            required
+          >
+            <button>Click to upload image</button>
+          </ImagePicker>
           <div class="cut cut-short"></div>
           <label className="placeholder">Image Url</label>
         </div>

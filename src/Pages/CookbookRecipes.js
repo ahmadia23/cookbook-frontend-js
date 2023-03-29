@@ -16,6 +16,9 @@ const CookbookRecipes = () => {
         key={recipe.id}
         to={`/cookbooks/${cookbookId}/${recipe.id}`}
         className={classes.links}
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
         end
       >
         <RecipeCard key={recipes.id} {...recipe} />
