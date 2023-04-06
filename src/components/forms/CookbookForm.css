@@ -7,7 +7,6 @@
   width: 50vw;
   margin-left: 25vw;
 }
-
 .cookbook-form-input {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -37,4 +36,21 @@
 
 .title {
   line-height: 2.3rem;
+}
+
+.button__picker {
+  padding: 0.7em 0.8em;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: var(--color-primary-600);
+  color: white;
+}
+
+.button__picker:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.button__picker:active {
+  cursor: progress;
 }

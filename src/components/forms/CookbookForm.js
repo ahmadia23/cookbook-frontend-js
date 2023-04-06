@@ -65,7 +65,7 @@ const CookbookForm = (props) => {
             onError={(errMsg) => {}}
             required
           >
-            <button>Click to upload image</button>
+            <button className="button__picker">Click to upload image</button>
           </ImagePicker>
           <div class="cut cut-short"></div>
           <label className="placeholder">Image Url</label>
