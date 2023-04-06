@@ -162,3 +162,7 @@ textarea {
   padding: 2em;
   font-size: 1.2rem;
 }
+
+input[type="file"] {
+  display: none;
+}
