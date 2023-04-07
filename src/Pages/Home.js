@@ -37,8 +37,7 @@ const Home = () => {
         </div>
         <p className="home-community reveal">
           Join our community of passionate cooks and start creating your own
-          cookbook today. Explore the world of cooking and discover new dishes,
-          flavors, and techniques.
+          cookbook today.
         </p>
         <div className="home-community reveal">
           <p>Unleash your culinary creativity and let's get cooking!</p>

@@ -9,14 +9,14 @@
 }
 
 .website-section img {
-  width: 70%;
-  height: 40%;
+  width: 40vw;
+  height: 45vh;
 }
 
 .home-link {
-  margin-inline: 40%;
+  margin-inline: 30%;
   font-weight: bold;
-  font-size: 1em;
+  font-size: calc(16px + 0.6vw);
   line-height: 2rem;
   text-decoration: none;
   color: var(--color-primary-400);
@@ -74,14 +74,13 @@
 }
 
 .home-community {
-  padding: 4em;
-  line-height: 3rem;
+  line-height: calc(10px + 0.8vw);
   color: white;
   font-weight: bold;
-  font-size: calc(18px + 0.4vw);
+  font-size: calc(16px + 0.6vw);
   text-align: center;
-  margin-top: 3rem;
-  margin-bottom: 0;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
 }

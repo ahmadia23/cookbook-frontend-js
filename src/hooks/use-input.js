@@ -6,7 +6,6 @@ export const UseInput = (validate) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const inputValueHandler = (event) => {
-    console.log(event.target.value);
     setValue(event.target.value);
   };
 

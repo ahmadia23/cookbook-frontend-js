@@ -3,12 +3,19 @@ import { Form, redirect } from "react-router-dom";
 import "./Login.css";
 import { UseInput as UseLogin } from "../hooks/use-input";
 import Button from "../UI/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  const [buttonAvailable, setButton] = useState(true);
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
 
   const validateEmail = (value) => {
     if (value.trim(" ").length === 0) {
@@ -45,12 +52,6 @@ const Login = () => {
       return false;
     }
   };
-
-  console.log(buttonAvailable);
-  if (buttonAvailable) {
-    console.log("yo");
-    setButton(false);
-  }
 
   const {
     inputValue: emailValue,
@@ -96,14 +97,22 @@ const Login = () => {
         </div>
         <div className={passwordClasses}>
           <input
-            type="text"
+            type={passwordShown ? "text" : "password"}
             name="password"
             className="input"
             placeholder="Enter your password..."
             onChange={passwordValueHandler}
             onBlur={passwordBlurHandler}
             value={passwordValue}
+            id="login-password"
           ></input>
+          <span onClick={togglePassword}>
+            {!passwordShown ? (
+              <FontAwesomeIcon icon={faEye} />
+            ) : (
+              <FontAwesomeIcon icon={faEyeSlash} />
+            )}
+          </span>
           <div class="cut cut-short"></div>
           <label className="placeholder">Password</label>
         </div>

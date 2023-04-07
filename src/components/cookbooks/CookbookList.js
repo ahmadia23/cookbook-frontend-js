@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import "./CookbookList.css";
 
 function CookbookList(props) {
-  const data = useLoaderData();
-  let cookbooks = data.cookbooks;
+  const cookbooksData = useLoaderData();
+
+  let cookbooks = cookbooksData.cookbooks;
+
   const token = useRouteLoaderData("tokenLoader");
 
   const shuffleArray = (array) => {
@@ -37,15 +39,18 @@ function CookbookList(props) {
               window.scroll({
                 top: 0,
                 left: 0,
-                behavior: "smooth",
               });
             }}
-            end
           >
             <CookbookCard
               key={cookbook.id}
               name={cookbook.name}
-              imageUrl={cookbook.imageUrl}
+              imageUrl={
+                cookbook.imageUrl.split("/")[0] === "images"
+                  ? "https://cookbook-backend12.herokuapp.com/" +
+                    cookbook.imageUrl
+                  : cookbook.imageUrl
+              }
               description={cookbook.description}
               card={typeOfCard}
             />

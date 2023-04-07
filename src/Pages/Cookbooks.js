@@ -41,7 +41,6 @@ const Cookbooks = () => {
     return redirect("results");
   };
 
-  console.log(results);
   return (
     <Fragment>
       <h2 className="intro-text">
@@ -75,7 +74,6 @@ const Cookbooks = () => {
             <CookbookList random={true} smaller={false}></CookbookList>
           </div>
           <section className="cookbooks">
-            <div cookbooks-intro></div>
             <p className="intro-text">
               Each cookbook has a unique theme and includes a collection of
               delicious recipes that are sure to tantalize your taste buds.

@@ -31,14 +31,14 @@ const PromessCard = (props) => {
       <div className="home-card reveal">
         <img src={props.src1} alt="sweet recipe"></img>
         <p>
-          With our platform, you can create your own personalized cookbook,
-          tailored to your specific theme and preferences.
+          You can create your own personalized cookbook, tailored to your
+          specific theme and preferences.
         </p>
       </div>
       <div className="home-card reveal">
         <p>
-          Share your creations with the world. You'll never run out of ideas or
-          inspiration in the kitchen again.
+          Share your creations with the world. You'll never run out of
+          inspiration.
         </p>
         <img src={props.src2} alt="sweet recipe"></img>
       </div>

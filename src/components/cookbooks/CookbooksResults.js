@@ -8,11 +8,11 @@ const CookbooksResults = (props) => {
           <img
             src={cookbook.imageUrl}
             alt={cookbook.name}
-            class="card__image"
+            className="card__image"
           ></img>
           <figcaption className="card__caption">
-            <h2 class="card__title">{cookbook.name}</h2>
-            <p class="card__snippet">{cookbook.description}</p>
+            <h2 className="card__title">{cookbook.name}</h2>
+            <p className="card__snippet">{cookbook.description}</p>
           </figcaption>
         </figure>
       </Link>
