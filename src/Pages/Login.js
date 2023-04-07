@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import "./Login.css";
 import { UseInput as UseLogin } from "../hooks/use-input";
 import Button from "../UI/Button";
@@ -9,7 +9,16 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const Login = () => {
   let errorMailMessage = "";
   let errorPasswordMessage = "";
+  let responseErrorMessage = "";
   const [passwordShown, setPasswordShown] = useState(false);
+  const response = useActionData();
+
+  if (response) {
+    responseErrorMessage = (
+      <p className="error-message"> {response.errorMessage}</p>
+    );
+  }
+  console.log(response.errorMessage);
 
   const togglePassword = () => {
     // When the handler is invoked
@@ -78,6 +87,7 @@ const Login = () => {
   return (
     <div className="form-container">
       <Form method="POST" className="login-form">
+        {responseErrorMessage}
         {emailHasError && errorMailMessage}
         {passwordHasError && errorPasswordMessage}
         <div class="title">Welcome</div>
