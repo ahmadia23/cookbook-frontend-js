@@ -16,7 +16,7 @@
 .home-link {
   margin-inline: 30%;
   font-weight: bold;
-  font-size: calc(16px + 0.6vw);
+  font-size: calc(12px + 0.6vw);
   line-height: 2rem;
   text-decoration: none;
   color: var(--color-primary-400);
@@ -77,7 +77,7 @@
   line-height: calc(10px + 0.8vw);
   color: white;
   font-weight: bold;
-  font-size: calc(16px + 0.6vw);
+  font-size: calc(12px + 0.6vw);
   text-align: center;
   margin-top: 10rem;
   margin-bottom: 10rem;

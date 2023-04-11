@@ -12,19 +12,19 @@
 .home-card p {
   color: white;
   font-weight: bold;
-  font-size: calc(10px + 1vw);
+  font-size: calc(10px + 0.6vw);
   line-height: calc(12px + 1vw);
   margin: auto 2rem;
 }
 
 .home-card img {
-  height: 40vh;
-  width: 45vw;
+  height: 18rem;
+  width: 18rem;
 }
 .home-intro {
   color: white;
   font-weight: bold;
-  font-size: calc(16px + 1vw);
+  font-size: calc(10px + 1vw);
   line-height: calc(16px + 1.4vw);
   text-align: center;
   margin-top: 15rem;
@@ -56,6 +56,6 @@
   font-weight: bold;
   line-height: calc(16px + 1.4vw);
   text-align: center;
-  font-size: calc(16px + 0.6vw);
+  font-size: calc(12px + 0.6vw);
   margin-bottom: 5rem;
 }

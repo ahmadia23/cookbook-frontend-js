@@ -18,7 +18,6 @@ const Login = () => {
       <p className="error-message"> {response.errorMessage}</p>
     );
   }
-  console.log(response.errorMessage);
 
   const togglePassword = () => {
     // When the handler is invoked
@@ -87,7 +86,7 @@ const Login = () => {
   return (
     <div className="form-container">
       <Form method="POST" className="login-form">
-        {responseErrorMessage}
+        {response && responseErrorMessage}
         {emailHasError && errorMailMessage}
         {passwordHasError && errorPasswordMessage}
         <div class="title">Welcome</div>
