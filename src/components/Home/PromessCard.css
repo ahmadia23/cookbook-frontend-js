@@ -2,24 +2,26 @@
   background-color: #0d0d0d;
   justify-content: space-around;
   display: flex;
-  padding: 2em;
+  padding: 0 8em;
   width: 95%;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
-  margin: 8rem auto;
+  margin: 8rem 0;
+  overflow: hidden;
 }
 
 .home-card p {
   color: white;
   font-weight: bold;
-  font-size: calc(10px + 0.6vw);
-  line-height: calc(12px + 1vw);
+  font-size: calc(8px + 1vw);
+  line-height: calc(12px + 1.3vw);
   margin: auto 2rem;
 }
 
 .home-card img {
-  height: 18rem;
-  width: 18rem;
+  height: 100%;
+  width: 40vw;
+  max-width: 25rem;
 }
 .home-intro {
   color: white;
@@ -42,20 +44,23 @@
 
 .home-website {
   background-color: #0d0d0d;
-  flex-direction: column;
-  display: flex;
-  padding: 2em;
-  width: 85%;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
-  margin: 4rem auto;
+  padding: 0 3rem;
+  font-weight: bold;
+  line-height: calc(12px + 2vw);
+  text-align: center;
+  font-size: calc(10px + 0.7vw);
+  margin-bottom: 2rem;
 }
 
-.home-website p {
-  color: white;
-  font-weight: bold;
-  line-height: calc(16px + 1.4vw);
-  text-align: center;
-  font-size: calc(12px + 0.6vw);
-  margin-bottom: 5rem;
+.image-website {
+  opacity: 0;
+  height: 55vh;
+  width: 55vw;
+  max-width: 50rem;
+  display: flex;
+  align-items: center;
+  margin: 0 25%;
+  transition: opacity 0.7s ease-in-out;
 }

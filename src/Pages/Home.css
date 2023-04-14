@@ -1,38 +1,37 @@
 .container {
-  width: 80%;
   margin: auto 6em;
+  text-align: center;
 }
 
 .website-section {
   margin-inline: 10%;
-  width: 100%;
 }
 
 .website-section img {
-  width: 40vw;
   height: 45vh;
+  width: 45vw;
+  max-width: 25rem;
 }
 
 .home-link {
-  margin-inline: 30%;
   font-weight: bold;
-  font-size: calc(12px + 0.6vw);
+  font-size: calc(8px + 1vw);
   line-height: 2rem;
   text-decoration: none;
   color: var(--color-primary-400);
-  background-color: black;
+  background-color: transparent;
   padding: 0.6em;
   border: none;
   margin-top: 4px;
-  transition: 0.6s ease;
+  transition: 0.6s ease-in-out;
 }
 
 .home-link:hover {
-  color: var(--color-primary-800);
+  color: black;
   cursor: pointer;
   background-color: beige;
   border-radius: 4px;
-  padding: 8px;
+  padding: 12px;
 }
 
 .saving-title {
@@ -70,17 +69,33 @@
 }
 
 .login-actions a {
-  margin-inline: 1rem;
+  margin-inline: 1vw;
 }
 
 .home-community {
   line-height: calc(10px + 0.8vw);
   color: white;
   font-weight: bold;
-  font-size: calc(12px + 0.6vw);
+  font-size: calc(8px + 1vw);
   text-align: center;
   margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-bottom: 2rem;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
+}
+
+.home-actions {
+  margin-top: 8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.home-actions p {
+  color: white;
+  font-weight: bold;
+  font-size: calc(10px + 1vw);
+  line-height: calc(16px + 1.4vw);
 }

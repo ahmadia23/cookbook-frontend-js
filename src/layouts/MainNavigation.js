@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import React from "react";
-import classes from "./MainNavigation.module.css";
+import "./MainNavigation.css";
 import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
 import "../Pages/Home.css";
 import logoHome from "../images/logoSweet.png";
@@ -10,18 +10,17 @@ const MainNavigation = (props) => {
 
   return (
     <Fragment>
-      <header className={classes.header}>
+      <header className="header">
         <NavLink to="/" className={"logo"}>
-          <img className={"logo-home"} alt="logo" src={logoHome}></img>
+          <img alt="logo" src={logoHome}></img>
+          <div className="logo-home"></div>
         </NavLink>
-        <ul className={classes.list}>
+        <ul className="list">
           {token ? (
             <li>
               <NavLink
                 to="/savings"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
+                className={({ isActive }) => (isActive ? "active" : undefined)}
               >
                 {" "}
                 Loved
@@ -33,9 +32,7 @@ const MainNavigation = (props) => {
           <li>
             <NavLink
               to="/cookbooks"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
+              className={({ isActive }) => (isActive ? "active" : undefined)}
               end
             >
               Inspiration
@@ -48,18 +45,14 @@ const MainNavigation = (props) => {
             <li className="login-actions">
               <NavLink
                 to="/login"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
+                className={({ isActive }) => (isActive ? "active" : undefined)}
                 end
               >
                 Login
               </NavLink>
               <NavLink
                 to="/signup"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
+                className={({ isActive }) => (isActive ? "active" : undefined)}
                 end
               >
                 Signup

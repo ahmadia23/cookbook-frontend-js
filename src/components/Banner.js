@@ -5,14 +5,12 @@ const Banner = () => {
   return (
     <Fragment>
       <div className="banner">
-        <div class="container">
-          <h1>
-            Welcome to the world of <strong>culinary creativity! </strong>
-          </h1>
-          <p className="banner__text">
-            Learn to cook elegant and elaborated recipes form all over the world
-          </p>
-        </div>
+        <h1>
+          Welcome to the world of <strong>culinary creativity! </strong>
+        </h1>
+        <p className="banner__text">
+          Learn to cook elegant and elaborated recipes
+        </p>
       </div>
     </Fragment>
   );
