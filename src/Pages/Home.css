@@ -96,6 +96,11 @@
 .home-actions p {
   color: white;
   font-weight: bold;
-  font-size: calc(10px + 1vw);
+  font-size: calc(10px + 0.7vw);
   line-height: calc(16px + 1.4vw);
+  text-align: center;
+}
+
+.home-container {
+  margin: auto 4rem;
 }

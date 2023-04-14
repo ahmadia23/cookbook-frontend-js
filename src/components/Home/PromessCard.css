@@ -43,9 +43,13 @@
 }
 
 .home-website {
-  background-color: #0d0d0d;
-  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: opacity 0.7s ease-in-out;
+  opacity: 0;
+}
+.home-website p {
   padding: 0 3rem;
   font-weight: bold;
   line-height: calc(12px + 2vw);
@@ -55,12 +59,10 @@
 }
 
 .image-website {
-  opacity: 0;
-  height: 55vh;
+  height: 40vh;
   width: 55vw;
+  max-height: 25rem;
   max-width: 50rem;
   display: flex;
   align-items: center;
-  margin: 0 25%;
-  transition: opacity 0.7s ease-in-out;
 }
