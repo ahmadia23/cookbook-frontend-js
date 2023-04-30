@@ -157,13 +157,11 @@ textarea {
 }
 
 .intro-text {
-  margin: 1rem 4em;
-  margin-top: 2rem !important;
+  margin: 5rem 4em;
   text-align: center;
   font-weight: bold;
-  line-height: 3rem;
-  padding: 2em;
-  font-size: 1.2rem;
+  line-height: 2rem;
+  font-size: calc(8px + 0.8vw);
 }
 
 input[type="file"] {

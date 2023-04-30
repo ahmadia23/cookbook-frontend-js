@@ -1,6 +1,8 @@
 .card {
-  width: 22rem;
-  height: 22rem;
+  width: 20vw;
+  height: 22vh;
+  min-width: 18rem;
+  min-height: 16rem;
   margin-inline: 1rem;
   background-color: transparent;
   font-weight: bold;

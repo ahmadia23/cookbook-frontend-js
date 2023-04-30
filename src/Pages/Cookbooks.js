@@ -44,8 +44,7 @@ const Cookbooks = () => {
   return (
     <Fragment>
       <h2 className="intro-text">
-        Welcome to our Cookbooks page, where you can explore a wide range of
-        recipes and cooking ideas.
+        You can explore a wide range of recipes and cooking ideas.
       </h2>
       <h3 className="cookbook-section-title "> Find the right cookbook</h3>
       <div className="cookbook-searchbar">

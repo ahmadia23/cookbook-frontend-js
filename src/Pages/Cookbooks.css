@@ -7,7 +7,6 @@
 }
 
 .cookbooks-showcase > h2 {
-  margin: 6rem auto;
   text-align: center;
   color: var(--color-primary-400);
   font-size: 2em;
@@ -15,9 +14,8 @@
 
 .cookbooks-showcase {
   background-color: #0f0f0f;
-  padding: 2em;
-  margin: 4rem 8em;
   border-radius: 1em;
+  margin-top: 6rem;
 }
 
 .cookbooks {
