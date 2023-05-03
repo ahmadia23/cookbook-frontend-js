@@ -30,8 +30,8 @@
 
 .cookbook-section {
   background-color: #0f0f0f;
-  padding: 3rem;
   border-radius: 1em;
+  width: 100%;
 }
 
 .button-create {
